@@ -1,6 +1,9 @@
 package run
 
-import "fmt"
+import (
+	"Sing-boxA/generator"
+	"fmt"
+)
 
 func Run(command string) (isSuccess bool) {
 	switch command {
@@ -15,6 +18,7 @@ func Run(command string) (isSuccess bool) {
 }
 
 func StartInstance() (isSuccess bool) {
+	path, _ := generator.Generator()
 	fmt.Println("sing-box start!")
 	return true
 }

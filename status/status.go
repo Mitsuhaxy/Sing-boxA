@@ -1,18 +1,16 @@
-package run
+package status
 
 import (
 	"Sing-boxA/generator"
 	"fmt"
 )
 
-func Run(command string) (isSuccess bool) {
+func Command(command string) (isSuccess bool) {
 	switch command {
 	case "start":
 		return StartInstance()
 	case "stop":
 		return StopInstance()
-	case "updategeodata":
-		return UpdateGeodata()
 	}
 	return false
 }
@@ -28,7 +26,18 @@ func StopInstance() (isSuccess bool) {
 	return true
 }
 
-func UpdateGeodata() (isSuccess bool) {
-	fmt.Println("sing-box geodate update success!!")
+func UpdateGeodata(update string) (isSuccess bool) {
+	if update == "gogogo" {
+		return true
+	}
+	return false
+}
+
+func Mode(mode string) (isSuccess bool) {
+	if mode == "tun" {
+		return true
+	} else if mode == "tproxy" {
+		return true
+	}
 	return true
 }

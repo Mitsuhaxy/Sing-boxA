@@ -11,12 +11,10 @@ type InBound_Tun struct {
 }
 
 type InBound_Tproxy struct {
-	Listen                          string
-	Listen_Port                     int
-	Sniff                           bool
-	Sniff_Override_Destination      bool
-	Proxy_Protocol                  string
-	Proxy_Protocol_Accept_No_Header string
+	Listen                     string
+	Listen_Port                int
+	Sniff                      bool
+	Sniff_Override_Destination bool
 }
 
 type InBound struct {

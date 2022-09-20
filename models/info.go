@@ -7,7 +7,7 @@ type Info struct {
 	Geodata_Version   string
 	InBound           InBound
 	OutBound_Count    int
-	Route_Count       int
 	Outbound          []OutBound
+	Route_Count       int
 	Route             []Route
 }

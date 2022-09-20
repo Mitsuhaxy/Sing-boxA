@@ -1,23 +1,40 @@
 package models
 
 type TLS struct {
-	Enable        bool
+	Enabled       bool
 	Disable_Sni   bool
 	Server_Name   string
 	Insecure      bool
-	Alpn          string
+	Alpn          []string
 	Min_Version   string
 	Max_Version   string
-	Cipher_Suites string
+	Cipher_Suites []string
 	Certificate   string
 }
 
-type Transport struct {
-	Type    string
-	Host    string
+type Transport_HTTP struct {
+	Host    []string
 	Path    string
 	Method  string
 	Headers string
+}
+
+type Transport_WebSocket struct {
+	Path                   string
+	Headers                string
+	Max_Early_Data         int
+	Early_Data_Header_name string
+}
+
+type Transport_GRPC struct {
+	Server_Name string
+}
+
+type Transport struct {
+	Type                string
+	Transport_HTTP      Transport_HTTP
+	Transport_WebSocket Transport_WebSocket
+	Transport_GRPC      Transport_GRPC
 }
 
 type OutBound_Shadowsocks struct {

@@ -18,7 +18,7 @@ func Run(command string) (isSuccess bool) {
 }
 
 func StartInstance() (isSuccess bool) {
-	path, _ := generator.Generator()
+	generator.Generator()
 	fmt.Println("sing-box start!")
 	return true
 }

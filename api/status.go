@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func api_status(w http.ResponseWriter, r *http.Request) {
+func api_status_command(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		command := r.FormValue("command")
 

@@ -15,7 +15,7 @@ func startweb(w http.ResponseWriter, r *http.Request) {
 
 func Runapi() {
 	http.HandleFunc("/", startweb)
-	http.HandleFunc("/api/status", api_status)
+	http.HandleFunc("/api/status/command", api_status_command)
 	http.HandleFunc("/api/status/mode", api_status_mode)
 	http.HandleFunc("/api/status/updategeodata", api_status_updategeodata)
 	http.HandleFunc("/api/info", api_info)

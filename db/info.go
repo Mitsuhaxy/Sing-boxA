@@ -6,11 +6,8 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func init() {
-
-}
-
 func Info() (info models.Info) {
+	db, _ := DB().Query("SELECT * FROM userinfo")
 	info.RunningStatus = true
 	info.Sing_box_version = "1.0"
 	info.Sing_boxA_version = "1.0"

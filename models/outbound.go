@@ -2,13 +2,13 @@ package models
 
 type TLS struct {
 	Enabled       bool
-	Disable_Sni   bool
-	Server_Name   string
+	Disable_sni   bool
+	Server_name   string
 	Insecure      bool
 	Alpn          []string
-	Min_Version   string
-	Max_Version   string
-	Cipher_Suites []string
+	Min_version   string
+	Max_version   string
+	Cipher_suites []string
 	Certificate   string
 }
 
@@ -22,12 +22,12 @@ type Transport_HTTP struct {
 type Transport_WebSocket struct {
 	Path                   string
 	Headers                string
-	Max_Early_Data         int
-	Early_Data_Header_name string
+	Max_early_data         int
+	Early_data_header_name string
 }
 
 type Transport_GRPC struct {
-	Server_Name string
+	Server_name string
 }
 
 type Transport struct {
@@ -37,23 +37,35 @@ type Transport struct {
 	Transport_GRPC      Transport_GRPC
 }
 
-type OutBound_Shadowsocks struct {
+type Outbound_Shadowsocks struct {
+	ID           string
+	Tag          string
+	Type         string
+	Address      string
 	Method       string
 	Plugin       string
 	Plugin_opts  string
 	Password     string
 	Network      string
-	Udp_Over_Tcp bool
+	Udp_Ooer_tcp bool
 }
 
-type OutBound_VLESS struct {
+type Outbound_VLESS struct {
+	ID        string
+	Tag       string
+	Type      string
+	Address   string
 	TLS       TLS
 	Transport Transport
 	UUID      string
 	Network   string
 }
 
-type OutBound_VMess struct {
+type Outbound_VMess struct {
+	ID        string
+	Tag       string
+	Type      string
+	Address   string
 	TLS       TLS
 	Transport Transport
 	UUID      string
@@ -61,7 +73,11 @@ type OutBound_VMess struct {
 	Network   string
 }
 
-type OutBound_Trojan struct {
+type Outbound_Trojan struct {
+	ID        string
+	Tag       string
+	Type      string
+	Address   string
 	TLS       TLS
 	Transport Transport
 	Password  string
@@ -69,43 +85,46 @@ type OutBound_Trojan struct {
 	Network   string
 }
 
-type OutBound_WireGuard struct {
-	System_Interface bool
-	Interface_Name   string
-	Local_Address    []string
-	Private_Key      string
-	Peer_Public_Key  string
-	Pre_Shared_Key   string
-	MTU              int
+type Outbound_WireGuard struct {
+	ID               string
+	Tag              string
+	Type             string
+	Address          string
+	System_interface bool
+	Interface_name   string
+	Local_address    []string
+	Private_key      string
+	Peer_sublic_key  string
+	Pre_shared_key   string
+	Mtu              int
 	Network          string
 }
 
-type OutBound_Hysteria struct {
+type Outbound_Hysteria struct {
+	ID                    string
+	Tag                   string
+	Type                  string
+	Address               string
 	Up                    string
-	Up_Mbps               int
+	Up_mbps               int
 	Obfs                  string
 	Down                  string
-	Down_Mbps             int
+	Down_mbps             int
 	Auth                  string
-	Auth_Str              string
-	Recv_Window_Conn      int
-	Recv_Window           int
-	Disable_MTU_Discovery bool
+	Auth_str              string
+	Recv_window_conn      int
+	Recv_window           int
+	Disable_mtu_discovery bool
 	TLS                   TLS
 	Network               string
 }
 
-type OutBound struct {
-	ID                   string
-	Action               string
-	Tag                  string
-	Type                 string
-	Address              string
-	Port                 int
-	OutBound_Shadowsocks OutBound_Shadowsocks
-	OutBound_VLESS       OutBound_VLESS
-	OutBound_VMess       OutBound_VMess
-	OutBound_Trojan      OutBound_Trojan
-	OutBound_WireGuard   OutBound_WireGuard
-	OutBound_Hysteria    OutBound_Hysteria
+type Add_outbound struct {
+	Action string
+	Type   string
+}
+
+type Del_outbound struct {
+	Action string
+	ID     string
 }

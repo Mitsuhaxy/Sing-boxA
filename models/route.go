@@ -2,44 +2,43 @@ package models
 
 type Geoip struct {
 	Path            string
-	Download_Url    string
-	Download_Detour string
+	Download_url    string
+	Download_detour string
 }
 
 type Geosite struct {
 	Path            string
-	Download_Url    string
-	Download_Detour string
+	Download_url    string
+	Download_detour string
 }
 
 type Rules struct {
 	Inbound           string
-	Ip_Version        int
+	Ip_version        int
 	Network           string
 	Protocol          string
 	Domain            string
-	Domain_Suffix     string
-	Domain_Keyword    string
-	Domain_Regex      string
+	Domain_suffix     string
+	Domain_keyword    string
+	Domain_regex      string
 	Geosite           string
-	Source_Geoip      string
+	Source_geoip      string
 	Geoip             string
-	Source_Ip_Cidr    string
-	Ip_Cidr           string
-	Source_Port_Range string
-	Port_Range        string
+	Source_ip_cidr    string
+	Ip_cidr           string
+	Source_port_range string
+	Port_range        string
 }
 
 type Route struct {
 	ID                    string
-	Action                string
 	Tag                   string
 	Enabled               bool
 	Geoip                 Geoip
 	Geosite               Geosite
 	Rules                 Rules
 	Final                 string
-	Auto_Detect_Interface bool
-	Default_Interface     string
-	Default_Mark          int
+	Auto_detect_interface bool
+	Default_interface     string
+	Default_mark          int
 }

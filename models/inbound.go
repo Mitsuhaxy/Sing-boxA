@@ -1,24 +1,24 @@
 package models
 
-type InBound_Tun struct {
-	Interface_Name           string
-	Inet4_Address            string
-	MTU                      int
-	Auto_Route               bool
-	Strict_Route             bool
-	Endpoint_Independent_Nat bool
+type Inbound_Tun struct {
+	Type                     string
+	Interface_name           string
+	Inet4_address            string
+	Mtu                      int
+	Auto_route               bool
+	Strict_route             bool
+	Endpoint_independent_nat bool
 	Stack                    string
 }
 
-type InBound_Tproxy struct {
+type Inbound_Tproxy struct {
+	Type                       string
 	Listen                     string
-	Listen_Port                int
+	Listen_port                int
 	Sniff                      bool
-	Sniff_Override_Destination bool
+	Sniff_override_destination bool
 }
 
-type InBound struct {
-	Mode           string
-	InBound_Tun    InBound_Tun
-	InBound_Tproxy InBound_Tproxy
+type Inbound_Mode struct {
+	Mode string
 }

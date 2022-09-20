@@ -1,13 +1,18 @@
 package models
 
 type Info struct {
-	RunningStatus     bool
-	Sing_Box_Version  string
-	Sing_BoxA_Version string
-	Geodata_Version   string
-	InBound           InBound
-	OutBound_Count    int
-	Outbound          []OutBound
-	Route_Count       int
-	Route             []Route
+	RunningStatus        bool
+	Sing_box_version     string
+	Sing_boxA_version    string
+	Geodata_version      string
+	Inbound_mode         string
+	Outbound_count       int
+	Outbound_Shadowsocks []Outbound_Shadowsocks
+	Outbound_VLESS       []Outbound_VLESS
+	Outbound_VMess       []Outbound_VMess
+	Outbound_Trojan      []Outbound_Trojan
+	Outbound_WireGuard   []Outbound_WireGuard
+	Outbound_Hysteria    []Outbound_Hysteria
+	Route_count          int
+	Route                []Route
 }

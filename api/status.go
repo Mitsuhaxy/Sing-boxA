@@ -22,10 +22,8 @@ func api_status_command(w http.ResponseWriter, r *http.Request) {
 }
 
 func api_status_updategeodata(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		update := r.FormValue("update")
-
-		if status.UpdateGeodata(update) {
+	if r.Method == "GET" {
+		if status.UpdateGeodata() {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))

@@ -18,7 +18,3 @@ type Inbound_Tproxy struct {
 	Sniff                      bool
 	Sniff_override_destination bool
 }
-
-type Inbound_Mode struct {
-	Mode string
-}

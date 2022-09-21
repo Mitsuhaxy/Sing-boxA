@@ -7,23 +7,6 @@ import (
 	"strconv"
 )
 
-func api_inbound_mode(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		mode := models.Inbound_Mode{}
-		mode.Mode = r.FormValue("mode")
-
-		if db.Inbound_mode(mode) {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "success"}`))
-		} else {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "fail"}`))
-		}
-	}
-}
-
 func api_inbound_tun(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		tun := models.Inbound_Tun{}

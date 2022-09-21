@@ -6,20 +6,17 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+const VERSION string = "b1.0"
+
 func Info() (info models.Info) {
-	// returnInfo := models.Info{}
-
-	// status, _ := DB().Query("SELECT * FROM status")
-	// inbound, _ := DB().Query("SELECT * FROM inbound")
-	// for db.Next() {
-	// 	var RunningStatus        bool
-	// 	var Sing_box_version     string
-	// 	var Sing_boxA_version    string
-	// 	var Geodata_version      string
-	// 	var Inbound_mode         string
-	// 	status.Scan(&status,&mode,&Geodata_version)
-
-	// }
-
+	status_db, _ := DB().Query("SELECT data FROM status WHERE name = ?")
+	inbound_db, _ := DB().Query("SELECT data FROM inbound WHERE name = ?")
+	outbound_db, _ := DB().Query("SELECT data FROM inbound WHERE name = ?")
+	var status bool
+	var geodata_version string
+	var mode string
+	var inbound_tun string
+	var inbound_tproxy string
+	var outbound []string
 	return info
 }

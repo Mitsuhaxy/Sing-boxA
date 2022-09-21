@@ -6,6 +6,8 @@ type Info struct {
 	Sing_boxA_version    string
 	Geodata_version      string
 	Inbound_mode         string
+	Inbound_Tun          Inbound_Tun
+	Inbound_Tproxy       Inbound_Tproxy
 	Outbound_count       int
 	Outbound_Shadowsocks []Outbound_Shadowsocks
 	Outbound_VLESS       []Outbound_VLESS

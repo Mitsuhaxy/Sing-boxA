@@ -20,7 +20,6 @@ func Runapi() {
 	http.HandleFunc("/api/status/updategeodata", api_status_updategeodata)
 	http.HandleFunc("/api/info", api_info)
 	http.HandleFunc("/api/log", api_log)
-	http.HandleFunc("/api/inbound/mode", api_inbound_mode)
 	http.HandleFunc("/api/inbound/tun", api_inbound_tun)
 	http.HandleFunc("/api/inbound/tproxy", api_inbound_tproxy)
 	http.HandleFunc("/api/outbound/add", api_outbound_add)

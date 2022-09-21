@@ -13,7 +13,7 @@ func startweb(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Runapi() {
+func RunApi() {
 	http.HandleFunc("/", startweb)
 	http.HandleFunc("/api/status/command", api_status_command)
 	http.HandleFunc("/api/status/mode", api_status_mode)

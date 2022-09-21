@@ -23,11 +23,11 @@ func RunApi() {
 	http.HandleFunc("/api/inbound/tun", api_inbound_tun)
 	http.HandleFunc("/api/inbound/tproxy", api_inbound_tproxy)
 	http.HandleFunc("/api/outbound/add", api_outbound_add)
-	http.HandleFunc("/api/outbound/del", api_outbound_del)
 	http.HandleFunc("/api/outbound/mod", api_outbound_mod)
+	http.HandleFunc("/api/outbound/del", api_outbound_del)
 	http.HandleFunc("/api/route/add", api_route_add)
-	http.HandleFunc("/api/route/del", api_route_del)
 	http.HandleFunc("/api/route/mod", api_route_mod)
+	http.HandleFunc("/api/route/del", api_route_del)
 
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {

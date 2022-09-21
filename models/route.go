@@ -1,21 +1,16 @@
 package models
 
 type Rules struct {
-	Inbound           string
-	Ip_version        int
-	Network           string
-	Protocol          string
-	Domain            string
-	Domain_suffix     string
-	Domain_keyword    string
-	Domain_regex      string
-	Geosite           string
-	Source_geoip      string
-	Geoip             string
-	Source_ip_cidr    string
-	Ip_cidr           string
-	Source_port_range string
-	Port_range        string
+	Inbound    string
+	Ip_version int
+	Network    string
+	Protocol   []string
+	Domain     []string
+	Geosite    []string
+	Geoip      []string
+	Ip_cidr    []string
+	Port_range []string
+	Outbound   string
 }
 
 type Route struct {

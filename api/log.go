@@ -8,15 +8,15 @@ import (
 	"net/http"
 )
 
-func api_log(w http.ResponseWriter, r *http.Request) {
+func api_set_log(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		setlog := models.Log{}
-		setlog.Disabled = (r.FormValue("disabled") == "true")
-		setlog.Leavel = r.FormValue("leavel")
-		setlog.Output = r.FormValue("output")
-		setlog.Timestamp = (r.FormValue("disabled") == "true")
+		setLog := models.Log{}
+		setLog.Disabled = (r.FormValue("disabled") == "true")
+		setLog.Leavel = r.FormValue("leavel")
+		setLog.Output = r.FormValue("output")
+		setLog.Timestamp = (r.FormValue("disabled") == "true")
 
-		if db.Log(setlog) {
+		if db.Log(setLog) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))

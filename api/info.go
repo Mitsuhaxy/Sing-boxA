@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func api_info(w http.ResponseWriter, r *http.Request) {
+func api_get_info(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		info, _ := json.Marshal(db.Info())
 		w.Header().Set("Content-Type", "application/json")

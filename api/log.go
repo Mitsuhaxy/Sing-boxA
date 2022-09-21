@@ -14,7 +14,7 @@ func api_set_log(w http.ResponseWriter, r *http.Request) {
 		setLog.Disabled = (r.FormValue("disabled") == "true")
 		setLog.Leavel = r.FormValue("leavel")
 		setLog.Output = r.FormValue("output")
-		setLog.Timestamp = (r.FormValue("disabled") == "true")
+		setLog.Timestamp = (r.FormValue("timestamp") == "true")
 
 		if db.Log(setLog) {
 			w.Header().Set("Content-Type", "application/json")

@@ -11,11 +11,19 @@ import (
 func Command(command string) (isSuccess bool) {
 	switch command {
 	case "start":
-		db.Status(command)
-		return StartInstance()
+		if StartInstance() {
+			if db.Status(command) {
+				return true
+			}
+		}
+		return false
 	case "stop":
-		db.Status(command)
-		return StopInstance()
+		if StopInstance() {
+			if db.Status(command) {
+				return true
+			}
+		}
+		return false
 	}
 	return false
 }
@@ -32,7 +40,7 @@ func StopInstance() (isSuccess bool) {
 }
 
 func UpdateGeodata() (isSuccess bool) {
-	version := time.Now().Format("2000-01-01 00:00:00")
+	version := time.Now().String()
 	geoipUrl := "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db"
 	geositeUrl := "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
 	fmt.Println("updateing")
@@ -51,12 +59,5 @@ func UpdateGeodata() (isSuccess bool) {
 }
 
 func Mode(mode string) (isSuccess bool) {
-	if mode == "tun" {
-		// TODO
-		return true
-	} else if mode == "tproxy" {
-		// TODO
-		return true
-	}
-	return false
+	return db.Mode(mode)
 }

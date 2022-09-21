@@ -24,6 +24,7 @@ type Transport struct {
 }
 
 type Outbound_Shadowsocks struct {
+	ID           string
 	Tag          string
 	Type         string
 	Server       string
@@ -37,6 +38,7 @@ type Outbound_Shadowsocks struct {
 }
 
 type Outbound_VLESS struct {
+	ID              string
 	Tag             string
 	Type            string
 	Server          string
@@ -49,6 +51,7 @@ type Outbound_VLESS struct {
 }
 
 type Outbound_VMess struct {
+	ID          string
 	Tag         string
 	Type        string
 	Server      string
@@ -61,6 +64,7 @@ type Outbound_VMess struct {
 }
 
 type Outbound_Trojan struct {
+	ID          string
 	Tag         string
 	Type        string
 	Server      string
@@ -73,6 +77,7 @@ type Outbound_Trojan struct {
 }
 
 type Outbound_WireGuard struct {
+	ID               string
 	Tag              string
 	Type             string
 	Server           string
@@ -88,6 +93,7 @@ type Outbound_WireGuard struct {
 }
 
 type Outbound_Hysteria struct {
+	ID                    string
 	Tag                   string
 	Type                  string
 	Server                string

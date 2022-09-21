@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 func api_outbound_add(w http.ResponseWriter, r *http.Request) {
@@ -16,6 +18,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 		switch r.FormValue("type") {
 		case "shadowsocks":
 			addOutbound := models.Outbound_Shadowsocks{}
+			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -29,6 +32,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 			isSuccess = db.Add_Outbound_Shadowsocks(addOutbound)
 		case "vless":
 			addOutbound := models.Outbound_VLESS{}
+			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -66,6 +70,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 			isSuccess = db.Add_Outbound_VLESS(addOutbound)
 		case "vmess":
 			addOutbound := models.Outbound_VMess{}
+			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -104,6 +109,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 			isSuccess = db.Add_Outbound_VMess(addOutbound)
 		case "Trojan":
 			addOutbound := models.Outbound_Trojan{}
+			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -141,6 +147,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 			isSuccess = db.Add_Outbound_Trojan(addOutbound)
 		case "WireGuard":
 			addOutbound := models.Outbound_WireGuard{}
+			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -156,6 +163,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 			isSuccess = db.Add_Outbound_WireGuard(addOutbound)
 		case "Hysteria":
 			addOutbound := models.Outbound_Hysteria{}
+			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -198,6 +206,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 		switch r.FormValue("type") {
 		case "shadowsocks":
 			addOutbound := models.Outbound_Shadowsocks{}
+			addOutbound.ID = r.FormValue("id")
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -208,9 +217,10 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 			addOutbound.Password = r.FormValue("password")
 			addOutbound.Network = r.FormValue("network")
 			addOutbound.Udp_over_tcp = (r.FormValue("udp_over_tcp") == "true")
-			isSuccess = db.Add_Outbound_Shadowsocks(addOutbound)
+			isSuccess = db.Mod_Outbound_Shadowsocks(addOutbound)
 		case "vless":
 			addOutbound := models.Outbound_VLESS{}
+			addOutbound.ID = r.FormValue("id")
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -245,9 +255,10 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 				addOutbound.Transport.Type = "grpc"
 				addOutbound.Transport.Server_name = r.FormValue("transport_server_name")
 			}
-			isSuccess = db.Add_Outbound_VLESS(addOutbound)
+			isSuccess = db.Mod_Outbound_VLESS(addOutbound)
 		case "vmess":
 			addOutbound := models.Outbound_VMess{}
+			addOutbound.ID = r.FormValue("id")
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -283,9 +294,10 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 				addOutbound.Transport.Server_name = r.FormValue("transport_server_name")
 			}
 
-			isSuccess = db.Add_Outbound_VMess(addOutbound)
+			isSuccess = db.Mod_Outbound_VMess(addOutbound)
 		case "Trojan":
 			addOutbound := models.Outbound_Trojan{}
+			addOutbound.ID = r.FormValue("id")
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -320,9 +332,10 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 				addOutbound.Transport.Type = "grpc"
 				addOutbound.Transport.Server_name = r.FormValue("transport_server_name")
 			}
-			isSuccess = db.Add_Outbound_Trojan(addOutbound)
+			isSuccess = db.Mod_Outbound_Trojan(addOutbound)
 		case "WireGuard":
 			addOutbound := models.Outbound_WireGuard{}
+			addOutbound.ID = r.FormValue("id")
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -335,9 +348,10 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 			addOutbound.Pre_shared_key = r.FormValue("pre_shared_key")
 			addOutbound.Mtu, _ = strconv.Atoi(r.FormValue("mtu"))
 			addOutbound.Network = r.FormValue("network")
-			isSuccess = db.Add_Outbound_WireGuard(addOutbound)
+			isSuccess = db.Mod_Outbound_WireGuard(addOutbound)
 		case "Hysteria":
 			addOutbound := models.Outbound_Hysteria{}
+			addOutbound.ID = r.FormValue("id")
 			addOutbound.Tag = r.FormValue("tag")
 			addOutbound.Type = r.FormValue("type")
 			addOutbound.Server = r.FormValue("server")
@@ -360,7 +374,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 			addOutbound.TLS.Cipher_suites = strings.Split(r.FormValue("tls_cipher_suites"), ",")
 			addOutbound.TLS.Certificate = r.FormValue("tls_certificate")
 			addOutbound.Network = r.FormValue("network")
-			isSuccess = db.Add_Outbound_Hysteria(addOutbound)
+			isSuccess = db.Mod_Outbound_Hysteria(addOutbound)
 		}
 		if isSuccess {
 			w.Header().Set("Content-Type", "application/json")
@@ -376,7 +390,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 
 func api_outbound_del(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		if db.Del_Outbound(r.FormValue("name")) {
+		if db.Del_Outbound(r.FormValue("id")) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))

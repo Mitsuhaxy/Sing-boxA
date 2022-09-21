@@ -1,17 +1,5 @@
 package models
 
-type Geoip struct {
-	Path            string
-	Download_url    string
-	Download_detour string
-}
-
-type Geosite struct {
-	Path            string
-	Download_url    string
-	Download_detour string
-}
-
 type Rules struct {
 	Inbound           string
 	Ip_version        int
@@ -34,8 +22,6 @@ type Route struct {
 	ID                    string
 	Tag                   string
 	Enabled               bool
-	Geoip                 Geoip
-	Geosite               Geosite
 	Rules                 Rules
 	Final                 string
 	Auto_detect_interface bool

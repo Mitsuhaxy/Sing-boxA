@@ -11,23 +11,23 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 		if r.FormValue("action") == "add" {
 			switch r.FormValue("type") {
 			case "Shadowsocks":
-				outbound := models.Outbound_Shadowsocks{}
-				db.Add_outbound_Shadowsocks(outbound)
+				addOutbound := models.Outbound_Shadowsocks{}
+				db.Add_Outbound_Shadowsocks(addOutbound)
 			case "VLESS":
-				outbound := models.Outbound_VLESS{}
-				db.Add_outbound_VLESS(outbound)
+				addOutbound := models.Outbound_VLESS{}
+				db.Add_Outbound_VLESS(addOutbound)
 			case "VMess":
-				outbound := models.Outbound_VMess{}
-				db.Add_outbound_VMess(outbound)
+				addOutbound := models.Outbound_VMess{}
+				db.Add_Outbound_VMess(addOutbound)
 			case "Trojan":
-				outbound := models.Outbound_Trojan{}
-				db.Add_outbound_Trojan(outbound)
+				addOutbound := models.Outbound_Trojan{}
+				db.Add_Outbound_Trojan(addOutbound)
 			case "WireGuard":
-				outbound := models.Outbound_WireGuard{}
-				db.Add_outbound_WireGuard(outbound)
+				addOutbound := models.Outbound_WireGuard{}
+				db.Add_Outbound_WireGuard(addOutbound)
 			case "Hysteria":
-				outbound := models.Outbound_Hysteria{}
-				db.Add_outbound_Hysteria(outbound)
+				addOutbound := models.Outbound_Hysteria{}
+				db.Add_Outbound_Hysteria(addOutbound)
 			}
 		}
 	}
@@ -38,23 +38,23 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 		if r.FormValue("action") == "mod" {
 			switch r.FormValue("type") {
 			case "Shadowsocks":
-				outbound := models.Outbound_Shadowsocks{}
-				db.Add_outbound_Shadowsocks(outbound)
+				modOutbound := models.Outbound_Shadowsocks{}
+				db.Add_Outbound_Shadowsocks(modOutbound)
 			case "VLESS":
-				outbound := models.Outbound_VLESS{}
-				db.Add_outbound_VLESS(outbound)
+				modOutbound := models.Outbound_VLESS{}
+				db.Add_Outbound_VLESS(modOutbound)
 			case "VMess":
-				outbound := models.Outbound_VMess{}
-				db.Add_outbound_VMess(outbound)
+				modOutbound := models.Outbound_VMess{}
+				db.Add_Outbound_VMess(modOutbound)
 			case "Trojan":
-				outbound := models.Outbound_Trojan{}
-				db.Add_outbound_Trojan(outbound)
+				modOutbound := models.Outbound_Trojan{}
+				db.Add_Outbound_Trojan(modOutbound)
 			case "WireGuard":
-				outbound := models.Outbound_WireGuard{}
-				db.Add_outbound_WireGuard(outbound)
+				modOutbound := models.Outbound_WireGuard{}
+				db.Add_Outbound_WireGuard(modOutbound)
 			case "Hysteria":
-				outbound := models.Outbound_Hysteria{}
-				db.Add_outbound_Hysteria(outbound)
+				modOutbound := models.Outbound_Hysteria{}
+				db.Add_Outbound_Hysteria(modOutbound)
 			}
 		}
 	}
@@ -64,11 +64,11 @@ func api_outbound_del(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		if r.FormValue("action") == "del" {
 
-			outbound := models.Del_outbound{}
-			outbound.Action = r.FormValue("action")
-			outbound.ID = r.FormValue("id")
+			delOutbound := models.Del_Outbound{}
+			delOutbound.Action = r.FormValue("action")
+			delOutbound.ID = r.FormValue("id")
 
-			if db.Del_outbound(outbound) {
+			if db.Del_Outbound(delOutbound) {
 				w.Header().Set("Content-Type", "application/json")
 				w.WriteHeader(http.StatusCreated)
 				w.Write([]byte(`{"info": "success"}`))

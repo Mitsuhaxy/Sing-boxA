@@ -119,12 +119,12 @@ type Outbound_Hysteria struct {
 	Network               string
 }
 
-type Add_outbound struct {
+type Add_Outbound struct {
 	Action string
 	Type   string
 }
 
-type Del_outbound struct {
+type Del_Outbound struct {
 	Action string
 	ID     string
 }

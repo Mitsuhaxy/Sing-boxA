@@ -3,8 +3,6 @@ package api
 import (
 	"Sing-boxA/db"
 	"Sing-boxA/models"
-	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -52,15 +50,9 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 				addOutbound.Transport.Host = strings.Split(r.FormValue("transport_alpn"), ",")
 				addOutbound.Transport.Path = r.FormValue("transport_path")
 				addOutbound.Transport.Method = r.FormValue("transport_method")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				addOutbound.Transport.Headers = header
 			case "ws":
 				addOutbound.Transport.Type = "ws"
 				addOutbound.Transport.Path = r.FormValue("transport_path")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				addOutbound.Transport.Headers = header
 				addOutbound.Transport.Max_early_data, _ = strconv.Atoi(r.FormValue("transport_server_port"))
 				addOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 			case "grpc":
@@ -90,15 +82,9 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 				addOutbound.Transport.Host = strings.Split(r.FormValue("transport_alpn"), ",")
 				addOutbound.Transport.Path = r.FormValue("transport_path")
 				addOutbound.Transport.Method = r.FormValue("transport_method")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				addOutbound.Transport.Headers = header
 			case "ws":
 				addOutbound.Transport.Type = "ws"
 				addOutbound.Transport.Path = r.FormValue("transport_path")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				addOutbound.Transport.Headers = header
 				addOutbound.Transport.Max_early_data, _ = strconv.Atoi(r.FormValue("transport_server_port"))
 				addOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 			case "grpc":
@@ -129,15 +115,9 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 				addOutbound.Transport.Host = strings.Split(r.FormValue("transport_alpn"), ",")
 				addOutbound.Transport.Path = r.FormValue("transport_path")
 				addOutbound.Transport.Method = r.FormValue("transport_method")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				addOutbound.Transport.Headers = header
 			case "ws":
 				addOutbound.Transport.Type = "ws"
 				addOutbound.Transport.Path = r.FormValue("transport_path")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				addOutbound.Transport.Headers = header
 				addOutbound.Transport.Max_early_data, _ = strconv.Atoi(r.FormValue("transport_server_port"))
 				addOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 			case "grpc":
@@ -240,15 +220,9 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 				modOutbound.Transport.Host = strings.Split(r.FormValue("transport_alpn"), ",")
 				modOutbound.Transport.Path = r.FormValue("transport_path")
 				modOutbound.Transport.Method = r.FormValue("transport_method")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				modOutbound.Transport.Headers = header
 			case "ws":
 				modOutbound.Transport.Type = "ws"
 				modOutbound.Transport.Path = r.FormValue("transport_path")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				modOutbound.Transport.Headers = header
 				modOutbound.Transport.Max_early_data, _ = strconv.Atoi(r.FormValue("transport_server_port"))
 				modOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 			case "grpc":
@@ -278,15 +252,9 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 				modOutbound.Transport.Host = strings.Split(r.FormValue("transport_alpn"), ",")
 				modOutbound.Transport.Path = r.FormValue("transport_path")
 				modOutbound.Transport.Method = r.FormValue("transport_method")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				modOutbound.Transport.Headers = header
 			case "ws":
 				modOutbound.Transport.Type = "ws"
 				modOutbound.Transport.Path = r.FormValue("transport_path")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				modOutbound.Transport.Headers = header
 				modOutbound.Transport.Max_early_data, _ = strconv.Atoi(r.FormValue("transport_server_port"))
 				modOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 			case "grpc":
@@ -317,15 +285,9 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 				modOutbound.Transport.Host = strings.Split(r.FormValue("transport_alpn"), ",")
 				modOutbound.Transport.Path = r.FormValue("transport_path")
 				modOutbound.Transport.Method = r.FormValue("transport_method")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				modOutbound.Transport.Headers = header
 			case "ws":
 				modOutbound.Transport.Type = "ws"
 				modOutbound.Transport.Path = r.FormValue("transport_path")
-				header := make(map[string]string)
-				json.Unmarshal([]byte(fmt.Sprintf("{%s}", r.FormValue("transport_header"))), &header)
-				modOutbound.Transport.Headers = header
 				modOutbound.Transport.Max_early_data, _ = strconv.Atoi(r.FormValue("transport_server_port"))
 				modOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 			case "grpc":

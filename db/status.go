@@ -1,6 +1,6 @@
 package db
 
-func Status(command string) (isSuccess bool) {
+func Instance(command string) (isSuccess bool) {
 	db, err := DB().Prepare("UPDATE status SET data = ? WHERE name = 'status'")
 	db.Exec(command)
 	return err == nil

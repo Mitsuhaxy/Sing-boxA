@@ -15,10 +15,12 @@ func startweb(w http.ResponseWriter, r *http.Request) {
 
 func RunApi() {
 	http.HandleFunc("/", startweb)
-	http.HandleFunc("/api/status/command", api_status_command)
+	http.HandleFunc("/api/status/status", api_status_status)
 	http.HandleFunc("/api/status/mode", api_status_mode)
 	http.HandleFunc("/api/status/updategeodata", api_status_updategeodata)
-	http.HandleFunc("/api/get/info", api_get_info)
+	http.HandleFunc("/api/get/info/status", api_get_info_status)
+	http.HandleFunc("/api/get/info/inbound", api_get_info_inbound)
+	http.HandleFunc("/api/get/info/outbound", api_get_info_outbound)
 	http.HandleFunc("/api/set/log", api_set_log)
 	http.HandleFunc("/api/inbound/tun", api_inbound_tun)
 	http.HandleFunc("/api/inbound/tproxy", api_inbound_tproxy)

@@ -1,27 +1,21 @@
 package status
 
 import (
-	"Sing-boxA/db"
 	"Sing-boxA/generator"
 	"fmt"
 	"net/http"
-	"time"
 )
 
-func Command(command string) (isSuccess bool) {
+func Status(command string) (isSuccess bool) {
 	switch command {
 	case "start":
 		if StartInstance() {
-			if db.Status(command) {
-				return true
-			}
+			return true
 		}
 		return false
 	case "stop":
 		if StopInstance() {
-			if db.Status(command) {
-				return true
-			}
+			return true
 		}
 		return false
 	}
@@ -40,7 +34,6 @@ func StopInstance() (isSuccess bool) {
 }
 
 func UpdateGeodata() (isSuccess bool) {
-	version := time.Now().String()
 	geoipUrl := "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db"
 	geositeUrl := "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
 	fmt.Println("updateing")
@@ -54,10 +47,18 @@ func UpdateGeodata() (isSuccess bool) {
 		return false
 	}
 	defer resp.Body.Close()
-	db.UpdateGeodata(version)
 	return true
 }
 
 func Mode(mode string) (isSuccess bool) {
-	return db.Mode(mode)
+	//切换模式
+	return
+}
+
+func InstanceStatus() (instancetatus string) {
+	return "stop"
+}
+
+func Sing_box_version() (sing_box_version string) {
+	return "v1.0"
 }

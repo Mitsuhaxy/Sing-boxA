@@ -24,9 +24,9 @@ type Transport struct {
 }
 
 type Outbound_Shadowsocks struct {
-	ID           string
-	Tag          string
-	Type         string
+	ID           string `json:"id"`
+	Tag          string `json:"tag"`
+	Type         string `json:"type"`
 	Server       string
 	Server_port  int
 	Method       string

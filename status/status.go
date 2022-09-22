@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func Instance(command string) (isSuccess bool) {
+func Status(command string) (isSuccess bool) {
 	switch command {
 	case "run":
 		if StartInstance() {

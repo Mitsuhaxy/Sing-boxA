@@ -2,12 +2,13 @@ package db
 
 import (
 	"Sing-boxA/models"
-	"encoding/json"
 )
 
-func Log(log models.Log) (isSuccess bool) {
-	logJson, _ := json.Marshal(log)
-	db, err := DB().Prepare("UPDATE log SET data = ? WHERE name = 'log'")
-	db.Exec(string(logJson))
+func Log(setLog models.Log) (isSuccess bool) {
+	db, err := DB().Prepare("UPDATE log SET value = ? WHERE key = ?")
+	db.Exec(setLog.Disabled, "disabled")
+	db.Exec(setLog.Leavel, "leavel")
+	db.Exec(setLog.Output, "output")
+	db.Exec(setLog.Timestamp, "timestamp")
 	return err == nil
 }

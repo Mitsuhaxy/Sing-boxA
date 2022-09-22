@@ -20,7 +20,7 @@ func api_inbound_tun(w http.ResponseWriter, r *http.Request) {
 		tun.Strict_route = (r.FormValue("strict_route") == "true")
 		tun.Endpoint_independent_nat = (r.FormValue("endpoint_independent_nat") == "true")
 		tun.Stack = r.FormValue("stack")
-		if db.Inbound_tun(tun) {
+		if db.Inbound_Tun(tun) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))
@@ -41,7 +41,7 @@ func api_inbound_tproxy(w http.ResponseWriter, r *http.Request) {
 		tproxy.Sniff = (r.FormValue("sniff") == "true")
 		tproxy.Sniff_override_destination = (r.FormValue("sniff_override_destination") == "true")
 
-		if db.Inbound_tproxy(tproxy) {
+		if db.Inbound_Tproxy(tproxy) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))

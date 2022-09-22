@@ -22,9 +22,6 @@ func api_status_instance(w http.ResponseWriter, r *http.Request) {
 				w.Write([]byte(`{"info": "fail"}`))
 			}
 		}
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusCreated)
-		w.Write([]byte(`{"info": "parameter error"}`))
 	}
 }
 
@@ -43,9 +40,6 @@ func api_status_mode(w http.ResponseWriter, r *http.Request) {
 				w.Write([]byte(`{"info": "fail"}`))
 			}
 		}
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusCreated)
-		w.Write([]byte(`{"info": "parameter error"}`))
 	}
 }
 

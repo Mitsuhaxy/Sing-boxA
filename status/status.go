@@ -8,7 +8,7 @@ import (
 
 func Instance(command string) (isSuccess bool) {
 	switch command {
-	case "start":
+	case "run":
 		if StartInstance() {
 			return true
 		}
@@ -52,7 +52,7 @@ func UpdateGeodata() (isSuccess bool) {
 
 func Mode(mode string) (isSuccess bool) {
 	//切换模式
-	return
+	return true
 }
 
 func InstanceStatus() (instancetatus string) {

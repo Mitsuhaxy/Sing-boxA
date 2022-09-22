@@ -7,7 +7,7 @@ import (
 
 func Log(setLog models.Log) (isSuccess bool) {
 	setLogJson, _ := json.Marshal(setLog)
-	db, err := DB().Prepare("UPDATE log SET value = ? WHERE key = 'log'")
+	db, err := DB().Prepare("UPDATE log SET data = ? WHERE tag = 'log'")
 	db.Exec(setLogJson)
 	return err == nil
 }

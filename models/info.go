@@ -1,30 +1,27 @@
 package models
 
 type StatusInfo struct {
-	Runningstatus     string
-	Instancestatus    string
-	Sing_box_version  string
-	Sing_boxA_version string
-	Geodata_version   string
-	Inbound_mode      string
+	Runningstatus     string `json:"runningstatus"`
+	Instancestatus    string `json:"instancestatus"`
+	Sing_box_version  string `json:"sing_box_version"`
+	Sing_boxA_version string `json:"sing_boxa_version"`
+	Geodata_version   string `json:"seodata_version"`
+	Inbound_mode      string `json:"inbound_mode"`
 }
 
 type InboundInfo struct {
-	Inbound_Tun    Inbound_Tun
-	Inbound_Tproxy Inbound_Tproxy
+	Inbound_Tun    Inbound_Tun    `json:"inbound_tun"`
+	Inbound_Tproxy Inbound_Tproxy `json:"inbound_tproxy"`
 }
 
 type OutboundInfo struct {
-	Outbound_count       int
-	Outbound_Shadowsocks []Outbound_Shadowsocks
-	Outbound_VLESS       []Outbound_VLESS
-	Outbound_VMess       []Outbound_VMess
-	Outbound_Trojan      []Outbound_Trojan
-	Outbound_WireGuard   []Outbound_WireGuard
-	Outbound_Hysteria    []Outbound_Hysteria
+	Outbound []string `json:"outbound"`
 }
 
 type RuleInfo struct {
-	Route_count int
-	Route       []Rule
+	Rule []Rule `json:"rule"`
+}
+
+type RouteInfo struct {
+	Route Route `json:"route"`
 }

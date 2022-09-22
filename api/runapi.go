@@ -21,6 +21,8 @@ func RunApi() {
 	http.HandleFunc("/api/get/info/status", api_get_info_status)
 	http.HandleFunc("/api/get/info/inbound", api_get_info_inbound)
 	http.HandleFunc("/api/get/info/outbound", api_get_info_outbound)
+	http.HandleFunc("/api/get/info/rule", api_get_info_rule)
+	http.HandleFunc("/api/get/info/route", api_get_info_route)
 	http.HandleFunc("/api/set/log", api_set_log)
 	http.HandleFunc("/api/inbound/tun", api_inbound_tun)
 	http.HandleFunc("/api/inbound/tproxy", api_inbound_tproxy)

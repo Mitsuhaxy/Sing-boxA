@@ -31,6 +31,7 @@ func RunApi() {
 	http.HandleFunc("/api/rule/mod", api_rule_mod)
 	http.HandleFunc("/api/rule/del", api_rule_del)
 	http.HandleFunc("/api/rule/enab", api_rule_enab)
+	http.HandleFunc("/api/route", api_route)
 
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {

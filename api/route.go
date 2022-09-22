@@ -4,27 +4,22 @@ import (
 	"Sing-boxA/db"
 	"Sing-boxA/models"
 	"net/http"
-	"strconv"
-	"strings"
-
-	"github.com/google/uuid"
 )
 
-func api_rule_add(w http.ResponseWriter, r *http.Request) {
+func api_route(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		addRule := models.Rule{}
-		addRule.ID = uuid.New().String()
-		addRule.Enabled = false
-		addRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
-		addRule.Network = r.FormValue("network")
-		addRule.Protocol = strings.Split(r.FormValue("protocol"), ",")
-		addRule.Domain = strings.Split(r.FormValue("domain"), ",")
-		addRule.Geosite = strings.Split(r.FormValue("geosite"), ",")
-		addRule.Geoip = strings.Split(r.FormValue("geoip"), ",")
-		addRule.Ip_cidr = strings.Split(r.FormValue("ip_cidr"), ",")
-		addRule.Port_range = strings.Split(r.FormValue("port_range"), ",")
-		addRule.Outbound = r.FormValue("outbound")
-		if db.Add_Rule(addRule) {
+		route := models.Route{}
+		route.Geoip.Path = r.FormValue("geoip_path")
+		route.Geoip.Download_url = r.FormValue("geoip_download_url")
+		route.Geoip.Download_detour = r.FormValue("geoip_download_detour")
+		route.Geosite.Path = r.FormValue("geosite_path")
+		route.Geosite.Download_url = r.FormValue("geosite_download_url")
+		route.Geosite.Download_detour = r.FormValue("geosite_download_detour")
+		route.Final = r.FormValue("final")
+		route.Auto_detect_interface = (r.FormValue("auto_detect_interface") == "true")
+		route.Default_mark = r.FormValue("default_mark")
+
+		if db.Route(route) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))
@@ -33,63 +28,5 @@ func api_rule_add(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "fail"}`))
 		}
-	}
-}
-
-func api_rule_mod(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		modRule := models.Rule{}
-		modRule.ID = r.FormValue("id")
-		modRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
-		modRule.Network = r.FormValue("network")
-		modRule.Protocol = strings.Split(r.FormValue("protocol"), ",")
-		modRule.Domain = strings.Split(r.FormValue("domain"), ",")
-		modRule.Geosite = strings.Split(r.FormValue("geosite"), ",")
-		modRule.Geoip = strings.Split(r.FormValue("geoip"), ",")
-		modRule.Ip_cidr = strings.Split(r.FormValue("ip_cidr"), ",")
-		modRule.Port_range = strings.Split(r.FormValue("port_range"), ",")
-		modRule.Outbound = r.FormValue("outbound")
-		if db.Mod_Rule(modRule) {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "success"}`))
-		} else {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "fail"}`))
-		}
-	}
-}
-
-func api_rule_del(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		ID := r.FormValue("id")
-		if db.Del_Rule(ID) {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "success"}`))
-		} else {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "fail"}`))
-		}
-
-	}
-}
-
-func api_rule_enab(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		ID := r.FormValue("id")
-		Enabled := (r.FormValue("enabled") == "true")
-		if db.Enab_Rule(ID, Enabled) {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "success"}`))
-		} else {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "fail"}`))
-		}
-
 	}
 }

@@ -1,9 +1,12 @@
 package db
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 func Instance(command string) (isSuccess bool) {
 	db, err := DB().Prepare("UPDATE status SET value = ? WHERE key = 'status'")
 =======
+=======
+>>>>>>> parent of 2734e56 (update)
 func Status(command string) (isSuccess bool) {
 	db, err := DB().Prepare("UPDATE status SET data = ? WHERE name = 'status'")
 >>>>>>> parent of 2734e56 (update)

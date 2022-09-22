@@ -90,8 +90,8 @@ func Mod_Outbound_Hysteria(outbound models.Outbound_Hysteria) (isSuccess bool) {
 	return err == nil
 }
 
-func Del_Outbound(outbound string) (isSuccess bool) {
+func Del_Outbound(id string) (isSuccess bool) {
 	db, err := DB().Prepare("DELETE FROM outbound WHERE id = ?")
-	db.Exec(outbound)
+	db.Exec(id)
 	return err == nil
 }

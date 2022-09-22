@@ -16,5 +16,5 @@ type Info struct {
 	Outbound_WireGuard   []Outbound_WireGuard
 	Outbound_Hysteria    []Outbound_Hysteria
 	Route_count          int
-	Route                []Route
+	Route                []Rule
 }

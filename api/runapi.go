@@ -25,9 +25,10 @@ func RunApi() {
 	http.HandleFunc("/api/outbound/add", api_outbound_add)
 	http.HandleFunc("/api/outbound/mod", api_outbound_mod)
 	http.HandleFunc("/api/outbound/del", api_outbound_del)
-	http.HandleFunc("/api/route/add", api_route_add)
-	http.HandleFunc("/api/route/mod", api_route_mod)
-	http.HandleFunc("/api/route/del", api_route_del)
+	http.HandleFunc("/api/rule/add", api_rule_add)
+	http.HandleFunc("/api/rule/mod", api_rule_mod)
+	http.HandleFunc("/api/rule/del", api_rule_del)
+	http.HandleFunc("/api/rule/enab", api_rule_enab)
 
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {

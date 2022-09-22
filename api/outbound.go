@@ -107,7 +107,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 			}
 
 			isSuccess = db.Add_Outbound_VMess(addOutbound)
-		case "Trojan":
+		case "trojan":
 			addOutbound := models.Outbound_Trojan{}
 			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
@@ -145,7 +145,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 				addOutbound.Transport.Server_name = r.FormValue("transport_server_name")
 			}
 			isSuccess = db.Add_Outbound_Trojan(addOutbound)
-		case "WireGuard":
+		case "wireguard":
 			addOutbound := models.Outbound_WireGuard{}
 			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
@@ -161,7 +161,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 			addOutbound.Mtu, _ = strconv.Atoi(r.FormValue("mtu"))
 			addOutbound.Network = r.FormValue("network")
 			isSuccess = db.Add_Outbound_WireGuard(addOutbound)
-		case "Hysteria":
+		case "hysteria":
 			addOutbound := models.Outbound_Hysteria{}
 			addOutbound.ID = uuid.New().String()
 			addOutbound.Tag = r.FormValue("tag")
@@ -295,7 +295,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 			}
 
 			isSuccess = db.Mod_Outbound_VMess(modOutbound)
-		case "Trojan":
+		case "trojan":
 			modOutbound := models.Outbound_Trojan{}
 			modOutbound.ID = r.FormValue("id")
 			modOutbound.Tag = r.FormValue("tag")
@@ -333,7 +333,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 				modOutbound.Transport.Server_name = r.FormValue("transport_server_name")
 			}
 			isSuccess = db.Mod_Outbound_Trojan(modOutbound)
-		case "WireGuard":
+		case "wireguard":
 			modOutbound := models.Outbound_WireGuard{}
 			modOutbound.ID = r.FormValue("id")
 			modOutbound.Tag = r.FormValue("tag")
@@ -349,7 +349,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 			modOutbound.Mtu, _ = strconv.Atoi(r.FormValue("mtu"))
 			modOutbound.Network = r.FormValue("network")
 			isSuccess = db.Mod_Outbound_WireGuard(modOutbound)
-		case "Hysteria":
+		case "hysteria":
 			modOutbound := models.Outbound_Hysteria{}
 			modOutbound.ID = r.FormValue("id")
 			modOutbound.Tag = r.FormValue("tag")

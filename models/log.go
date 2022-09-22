@@ -2,8 +2,8 @@ package models
 
 // RS: RequestSet
 type Log struct {
-	Disabled  bool
-	Leavel    string
-	Output    string
-	Timestamp bool
+	Disabled  bool   `json:"disabled"`
+	Leavel    string `json:"leavel"`
+	Output    string `json:"output"`
+	Timestamp bool   `json:"timestamp"`
 }

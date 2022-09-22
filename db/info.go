@@ -4,7 +4,6 @@ import (
 	"Sing-boxA/models"
 	"Sing-boxA/status"
 	"encoding/json"
-	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -62,7 +61,6 @@ func OutboundInfo() (outboundInfo models.OutboundInfo) {
 		var data string
 		db.Scan(&data)
 		outboundInfo.Outbound[i] = data
-		fmt.Println(i)
 		// json.Unmarshal([]byte(data), &outboundInfo.Outbound[i])
 	}
 	return

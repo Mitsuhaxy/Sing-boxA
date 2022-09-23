@@ -45,6 +45,20 @@ func api_status_mode(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func api_status_geodatadownloadurl(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		if db.GeodataDownloadUrl(r.FormValue("geodata"), r.FormValue("url")) {
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusCreated)
+			w.Write([]byte(`{"info": "success"}`))
+		} else {
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusCreated)
+			w.Write([]byte(`{"info": "fail"}`))
+		}
+	}
+}
+
 func api_status_updategeodata(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		if status.UpdateGeodata() {

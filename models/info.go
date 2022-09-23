@@ -5,6 +5,8 @@ type StatusInfo struct {
 	Sing_boxA_version string `json:"sing_boxa_version"`
 	Geodata_version   string `json:"seodata_version"`
 	Inbound_mode      string `json:"inbound_mode"`
+	Geoip_url         string `json:"geoip_url"`
+	Geoip_site        string `json:"geoip_site"`
 }
 
 type InboundInfo struct {

@@ -17,6 +17,7 @@ func RunApi() {
 	http.HandleFunc("/", startweb)
 	http.HandleFunc("/api/status/instance", api_status_instance)
 	http.HandleFunc("/api/status/mode", api_status_mode)
+	http.HandleFunc("/api/status/geodatadownloadurl", api_status_geodatadownloadurl)
 	http.HandleFunc("/api/status/updategeodata", api_status_updategeodata)
 	http.HandleFunc("/api/get/info/status", api_get_info_status)
 	http.HandleFunc("/api/get/info/inbound", api_get_info_inbound)

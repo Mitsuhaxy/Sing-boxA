@@ -22,6 +22,10 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 			statusInfo.Geodata_version = value
 		case "mode":
 			statusInfo.Inbound_mode = value
+		case "geoip_url":
+			statusInfo.Geoip_site = value
+		case "geosite_url":
+			statusInfo.Geoip_site = value
 		}
 
 	}

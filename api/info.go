@@ -50,3 +50,12 @@ func api_get_info_route(w http.ResponseWriter, r *http.Request) {
 		w.Write(info)
 	}
 }
+
+func api_get_info_log(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		info, _ := json.Marshal(db.LogInfo())
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusCreated)
+		w.Write(info)
+	}
+}

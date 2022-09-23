@@ -23,8 +23,10 @@ func RunApi() {
 	http.HandleFunc("/api/get/info/outbound", api_get_info_outbound)
 	http.HandleFunc("/api/get/info/rule", api_get_info_rule)
 	http.HandleFunc("/api/get/info/route", api_get_info_route)
+	http.HandleFunc("/api/get/info/log", api_get_info_log)
 	http.HandleFunc("/api/set/log", api_set_log)
-	http.HandleFunc("/api/inbound", api_inbound)
+	http.HandleFunc("/api/set/route", api_set_route)
+	http.HandleFunc("/api/set/inbound", api_set_inbound)
 	http.HandleFunc("/api/outbound/add", api_outbound_add)
 	http.HandleFunc("/api/outbound/mod", api_outbound_mod)
 	http.HandleFunc("/api/outbound/del", api_outbound_del)
@@ -32,7 +34,6 @@ func RunApi() {
 	http.HandleFunc("/api/rule/mod", api_rule_mod)
 	http.HandleFunc("/api/rule/del", api_rule_del)
 	http.HandleFunc("/api/rule/enab", api_rule_enab)
-	http.HandleFunc("/api/route", api_route)
 
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {

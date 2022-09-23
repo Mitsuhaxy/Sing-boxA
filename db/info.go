@@ -82,14 +82,24 @@ func RuleInfo() (ruleInfo models.RuleInfo) {
 	return
 }
 
-func RouteInfo() (RouteInfo models.RouteInfo) {
+func RouteInfo() (routeInfo models.RouteInfo) {
 	db, _ := DB().Query("SELECT * FROM inbound")
 	for db.Next() {
 		var tag string
 		var data string
 		db.Scan(&tag, &data)
-		json.Unmarshal([]byte(data), &RouteInfo.Route)
+		json.Unmarshal([]byte(data), &routeInfo.Route)
+	}
+	return
+}
 
+func LogInfo() (logInfo models.LogInfo) {
+	db, _ := DB().Query("SELECT data FROM log")
+	for db.Next() {
+		var tag string
+		var data string
+		db.Scan(&tag, &data)
+		json.Unmarshal([]byte(data), &logInfo.Log)
 	}
 	return
 }

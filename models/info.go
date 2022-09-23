@@ -24,3 +24,7 @@ type RuleInfo struct {
 type RouteInfo struct {
 	Route Route `json:"route"`
 }
+
+type LogInfo struct {
+	Log Log `json:"log"`
+}

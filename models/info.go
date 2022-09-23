@@ -1,9 +1,7 @@
 package models
 
 type StatusInfo struct {
-	Runningstatus     string `json:"runningstatus"`
 	Instancestatus    string `json:"instancestatus"`
-	Sing_box_version  string `json:"sing_box_version"`
 	Sing_boxA_version string `json:"sing_boxa_version"`
 	Geodata_version   string `json:"seodata_version"`
 	Inbound_mode      string `json:"inbound_mode"`

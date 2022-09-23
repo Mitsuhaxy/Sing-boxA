@@ -2,7 +2,6 @@ package db
 
 import (
 	"Sing-boxA/models"
-	"Sing-boxA/status"
 	"encoding/json"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -26,8 +25,6 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		}
 
 	}
-	statusInfo.Runningstatus = status.RunningStatus()
-	statusInfo.Sing_box_version = status.Sing_box_version()
 	statusInfo.Sing_boxA_version = SBA_VERSION
 	return
 }

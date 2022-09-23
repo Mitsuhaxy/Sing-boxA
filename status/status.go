@@ -1,29 +1,46 @@
 package status
 
 import (
-	"Sing-boxA/generator"
+	"Sing-boxA/db"
+	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 )
+
+func Generator() (isSuccess bool) {
+	config, _ := json.Marshal(db.Generator())
+	f, err := os.Create("sing-box.json")
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+	_, err = f.Write(config)
+	return err != nil
+
+}
+
+func Create() (isSuccess bool) {
+	file, err := os.Create("sing-box.json")
+	if err == nil {
+		return true
+	}
+	defer file.Close()
+	return false
+}
 
 func Instance(command string) (isSuccess bool) {
 	switch command {
 	case "run":
-		if Start() {
-			return true
-		}
-		return false
+		return Start()
 	case "stop":
-		if Stop() {
-			return true
-		}
-		return false
+		return Stop()
 	}
 	return false
 }
 
 func Start() (isSuccess bool) {
-	generator.Generator()
+	Generator()
 	// TODO
 	return true
 }

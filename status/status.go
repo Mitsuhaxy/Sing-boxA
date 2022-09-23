@@ -16,7 +16,7 @@ func Generator() (isSuccess bool) {
 		return false
 	}
 	defer f.Close()
-	_, err = f.Write(config)
+	f.Write(config)
 	return err != nil
 
 }
@@ -62,7 +62,9 @@ func UpdateGeodata() (isSuccess bool) {
 }
 
 func Mode(mode string) (isSuccess bool) {
-	//切换模式
+	db.Mode(mode)
+	Stop()
+	Start()
 	return true
 }
 

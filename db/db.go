@@ -1,8 +1,10 @@
 package db
 
-import "database/sql"
+import (
+	"database/sql"
+)
 
 func DB() (db *sql.DB) {
-	db, _ = sql.Open("sqlite3", "./sing-boxa.db")
+	db, _ = sql.Open("sqlite3", "~/sing-boxa.db")
 	return db
 }

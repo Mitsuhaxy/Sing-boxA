@@ -11,7 +11,7 @@ import (
 
 func Generator() (isSuccess bool) {
 	config, _ := json.Marshal(db.Generator())
-	f, err := os.Create("sing-box.json")
+	f, err := os.Create("~/sing-box.json")
 	if err != nil {
 		return false
 	}

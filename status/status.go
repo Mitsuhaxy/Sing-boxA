@@ -20,15 +20,6 @@ func Generator() (isSuccess bool) {
 
 }
 
-func Create() (isSuccess bool) {
-	file, err := os.Create("sing-box.json")
-	if err == nil {
-		return true
-	}
-	defer file.Close()
-	return false
-}
-
 func Instance(command string) (isSuccess bool) {
 	switch command {
 	case "run":

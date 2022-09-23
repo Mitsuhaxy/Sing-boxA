@@ -6,7 +6,7 @@ type StatusInfo struct {
 	Geodata_version   string `json:"seodata_version"`
 	Inbound_mode      string `json:"inbound_mode"`
 	Geoip_url         string `json:"geoip_url"`
-	Geoip_site        string `json:"geoip_site"`
+	Geosite_url       string `json:"geosite_url"`
 }
 
 type InboundInfo struct {

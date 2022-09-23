@@ -45,8 +45,11 @@ func Stop() (isSuccess bool) {
 }
 
 func UpdateGeodata() (isSuccess bool) {
-	geoipUrl := "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db"
-	geositeUrl := "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
+
+	geoipUrl := db.StatusInfo().Geoip_url
+	fmt.Println(geoipUrl)
+	geositeUrl := db.StatusInfo().Geosite_url
+	fmt.Println(geositeUrl)
 	fmt.Println("updateing")
 	resp, err := http.Get(geoipUrl)
 	if err != nil {

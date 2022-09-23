@@ -23,9 +23,9 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		case "mode":
 			statusInfo.Inbound_mode = value
 		case "geoip_url":
-			statusInfo.Geoip_site = value
+			statusInfo.Geoip_url = value
 		case "geosite_url":
-			statusInfo.Geoip_site = value
+			statusInfo.Geosite_url = value
 		}
 
 	}

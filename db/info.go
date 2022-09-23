@@ -33,35 +33,34 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 }
 
 func InboundInfo() (inboundInfo models.InboundInfo) {
-	db, _ := DB().Query("SELECT * FROM inbound")
+	db, _ := DB().Query("SELECT data FROM inbound")
+	inboundInfo.Inbound = make([]models.Inbound, 2)
 	for db.Next() {
-		var tag string
 		var data string
-		db.Scan(&tag, &data)
-		switch tag {
-		case "tun":
-			json.Unmarshal([]byte(data), &inboundInfo.Inbound_Tun)
-		case "tproxy":
-			json.Unmarshal([]byte(data), &inboundInfo.Inbound_Tproxy)
-		}
+		db.Scan(&data)
+		json.Unmarshal([]byte(data), &inboundInfo.Inbound[0])
+		json.Unmarshal([]byte(data), &inboundInfo.Inbound[1])
 	}
 	return
 }
 
 func OutboundInfo() (outboundInfo models.OutboundInfo) {
-	count_db, _ := DB().Query("SELECT * FROM outbound")
+	count_db, _ := DB().Query("SELECT * FROM rules")
 	count := 0
 	for count_db.Next() {
 		count++
 	}
-	outboundInfo.Outbound = make([]string, count)
 
+	outboundInfo.Outbound = make([]models.Outbound, count)
 	db, _ := DB().Query("SELECT data FROM outbound")
 	for i := 0; db.Next(); i++ {
 		var data string
 		db.Scan(&data)
-		outboundInfo.Outbound[i] = data
-		// json.Unmarshal([]byte(data), &outboundInfo.Outbound[i])
+		for i := 0; db.Next(); i++ {
+			var data string
+			db.Scan(&data)
+			json.Unmarshal([]byte(data), &outboundInfo.Outbound[i])
+		}
 	}
 	return
 }

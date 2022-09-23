@@ -10,12 +10,11 @@ type StatusInfo struct {
 }
 
 type InboundInfo struct {
-	Inbound_Tun    Inbound_Tun    `json:"inbound_tun"`
-	Inbound_Tproxy Inbound_Tproxy `json:"inbound_tproxy"`
+	Inbound []Inbound `json:"inbound"`
 }
 
 type OutboundInfo struct {
-	Outbound []string `json:"outbound"`
+	Outbound []Outbound `json:"outbound"`
 }
 
 type RuleInfo struct {

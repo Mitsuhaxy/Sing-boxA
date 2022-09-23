@@ -14,7 +14,6 @@ func api_rule_add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		addRule := models.Rule{}
 		addRule.ID = uuid.New().String()
-		addRule.Enabled = false
 		addRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
 		addRule.Network = r.FormValue("network")
 		addRule.Protocol = strings.Split(r.FormValue("protocol"), ",")
@@ -65,23 +64,6 @@ func api_rule_del(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		ID := r.FormValue("id")
 		if db.Del_Rule(ID) {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "success"}`))
-		} else {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"info": "fail"}`))
-		}
-
-	}
-}
-
-func api_rule_enab(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		ID := r.FormValue("id")
-		Enabled := (r.FormValue("enabled") == "true")
-		if db.Enab_Rule(ID, Enabled) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))

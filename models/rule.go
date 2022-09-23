@@ -2,7 +2,6 @@ package models
 
 type Rule struct {
 	ID         string   `json:"id"`
-	Enabled    bool     `json:"enabled"`
 	Inbound    string   `json:"inbound"`
 	Ip_version int      `json:"ip_version"`
 	Network    string   `json:"network"`

@@ -1,7 +1,7 @@
 package db
 
 func Instance(command string) (isSuccess bool) {
-	db, err := DB().Prepare("UPDATE status SET value = ? WHERE key = 'status'")
+	db, err := DB().Prepare("UPDATE status SET value = ? WHERE key = 'instance'")
 	db.Exec(command)
 	return err == nil
 }

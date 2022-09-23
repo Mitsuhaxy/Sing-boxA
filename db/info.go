@@ -17,8 +17,8 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		var value string
 		db.Scan(&key, &value)
 		switch key {
-		case "status":
-			statusInfo.Runningstatus = value
+		case "instance":
+			statusInfo.Instancestatus = value
 		case "geodata_version":
 			statusInfo.Geodata_version = value
 		case "mode":
@@ -26,7 +26,7 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		}
 
 	}
-	statusInfo.Instancestatus = status.InstanceStatus()
+	statusInfo.Runningstatus = status.RunningStatus()
 	statusInfo.Sing_box_version = status.Sing_box_version()
 	statusInfo.Sing_boxA_version = SBA_VERSION
 	return
@@ -45,7 +45,7 @@ func InboundInfo() (inboundInfo models.InboundInfo) {
 }
 
 func OutboundInfo() (outboundInfo models.OutboundInfo) {
-	count_db, _ := DB().Query("SELECT * FROM rules")
+	count_db, _ := DB().Query("SELECT * FROM outbound")
 	count := 0
 	for count_db.Next() {
 		count++
@@ -83,7 +83,7 @@ func RuleInfo() (ruleInfo models.RuleInfo) {
 }
 
 func RouteInfo() (routeInfo models.RouteInfo) {
-	db, _ := DB().Query("SELECT * FROM inbound")
+	db, _ := DB().Query("SELECT * FROM route")
 	for db.Next() {
 		var tag string
 		var data string
@@ -96,9 +96,8 @@ func RouteInfo() (routeInfo models.RouteInfo) {
 func LogInfo() (logInfo models.LogInfo) {
 	db, _ := DB().Query("SELECT data FROM log")
 	for db.Next() {
-		var tag string
 		var data string
-		db.Scan(&tag, &data)
+		db.Scan(&data)
 		json.Unmarshal([]byte(data), &logInfo.Log)
 	}
 	return

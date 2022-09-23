@@ -9,12 +9,12 @@ import (
 func Instance(command string) (isSuccess bool) {
 	switch command {
 	case "run":
-		if StartInstance() {
+		if Start() {
 			return true
 		}
 		return false
 	case "stop":
-		if StopInstance() {
+		if Stop() {
 			return true
 		}
 		return false
@@ -22,13 +22,13 @@ func Instance(command string) (isSuccess bool) {
 	return false
 }
 
-func StartInstance() (isSuccess bool) {
+func Start() (isSuccess bool) {
 	generator.Generator()
 	// TODO
 	return true
 }
 
-func StopInstance() (isSuccess bool) {
+func Stop() (isSuccess bool) {
 	// TODO
 	return true
 }
@@ -55,7 +55,7 @@ func Mode(mode string) (isSuccess bool) {
 	return true
 }
 
-func InstanceStatus() (instancetatus string) {
+func RunningStatus() (runningstatus string) {
 	return "stop"
 }
 

@@ -65,7 +65,6 @@ func api_set_inbound(w http.ResponseWriter, r *http.Request) {
 		inbound.Strict_route = (r.FormValue("strict_route") == "true")
 		inbound.Endpoint_independent_nat = (r.FormValue("endpoint_independent_nat") == "true")
 		inbound.Stack = r.FormValue("stack")
-		inbound.Type = r.FormValue("type")
 		inbound.Listen = r.FormValue("listen")
 		inbound.Listen_port, _ = strconv.Atoi(r.FormValue("listen_port"))
 		inbound.Sniff = (r.FormValue("sniff") == "true")

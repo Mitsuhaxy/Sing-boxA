@@ -3,6 +3,7 @@ package status
 import (
 	"Sing-boxA/db"
 	"encoding/json"
+	"io"
 	"net/http"
 	"os"
 	"os/exec"
@@ -46,16 +47,36 @@ func Stop() (isSuccess bool) {
 func UpdateGeodata() (isSuccess bool) {
 	geoipUrl := db.StatusInfo().Geoip_url
 	geositeUrl := db.StatusInfo().Geosite_url
+
 	resp, err := http.Get(geoipUrl)
 	if err != nil {
 		return false
 	}
 	defer resp.Body.Close()
+	out, err := os.Create("geoip.db")
+	if err != nil {
+		return false
+	}
+	defer out.Close()
+	_, err = io.Copy(out, resp.Body)
+	if err != nil {
+		return false
+	}
+
 	resp, err = http.Get(geositeUrl)
 	if err != nil {
 		return false
 	}
 	defer resp.Body.Close()
+	out, err = os.Create("geosite.db")
+	if err != nil {
+		panic(err)
+	}
+	defer out.Close()
+	_, err = io.Copy(out, resp.Body)
+	if err != nil {
+		panic(err)
+	}
 	return true
 }
 

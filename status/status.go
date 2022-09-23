@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"os/exec"
 )
 
 func Generator() (isSuccess bool) {
@@ -32,12 +33,14 @@ func Instance(command string) (isSuccess bool) {
 
 func Start() (isSuccess bool) {
 	Generator()
-	// TODO
+	cmd := exec.Command("sing-box", "run", "-c", "./sing-box.json")
+	cmd.Run()
 	return true
 }
 
 func Stop() (isSuccess bool) {
-	// TODO
+	cmd := exec.Command("kill", "-9", "$(ps -ef | grep 'sing-box run'")
+	cmd.Run()
 	return true
 }
 

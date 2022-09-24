@@ -54,7 +54,7 @@ func OutboundInfo() (outboundInfo models.OutboundInfo) {
 	for i := 0; db.Next(); i++ {
 		var data string
 		db.Scan(&data)
-		for i := 0; db.Next(); i++ {
+		for i := 1; db.Next(); i++ {
 			var data string
 			db.Scan(&data)
 			json.Unmarshal([]byte(data), &outboundInfo.Outbound[i])

@@ -39,6 +39,7 @@ func api_rule_mod(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		modRule := models.Rule{}
 		modRule.ID = r.FormValue("id")
+		modRule.Inbound = "tproxy"
 		modRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
 		modRule.Network = r.FormValue("network")
 		modRule.Protocol = strings.Split(r.FormValue("protocol"), ",")

@@ -18,5 +18,5 @@ type Route struct {
 	Rules                 []Rule  `json:"rules"`
 	Final                 string  `json:"final"`
 	Auto_detect_interface bool    `json:"auto_detect_interface"`
-	Default_mark          string  `json:"default_mark"`
+	Default_mark          int     `json:"default_mark"`
 }

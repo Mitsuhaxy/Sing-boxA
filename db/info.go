@@ -35,12 +35,10 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 
 func InboundInfo() (inboundInfo models.InboundInfo) {
 	db, _ := DB().Query("SELECT data FROM inbound")
-	inboundInfo.Inbound = make([]models.Inbound, 2)
 	for db.Next() {
 		var data string
 		db.Scan(&data)
-		json.Unmarshal([]byte(data), &inboundInfo.Inbound[0])
-		json.Unmarshal([]byte(data), &inboundInfo.Inbound[1])
+		json.Unmarshal([]byte(data), &inboundInfo.Inbound)
 	}
 	return
 }

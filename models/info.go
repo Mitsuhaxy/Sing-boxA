@@ -10,7 +10,7 @@ type StatusInfo struct {
 }
 
 type InboundInfo struct {
-	Inbound []Inbound `json:"inbound"`
+	Inbound Inbound `json:"inbound"`
 }
 
 type OutboundInfo struct {

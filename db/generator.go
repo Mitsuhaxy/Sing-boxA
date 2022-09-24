@@ -36,27 +36,11 @@ func Generator() (configFile models.ConfigFile) {
 		json.Unmarshal([]byte(data), &configFile.Route.Rules[i])
 	}
 	/*****************  inbound  *****************/
-	var mode string
-	db, _ = DB().Query("SELECT * FROM status")
+	db, _ = DB().Query("SELECT data FROM inbound")
 	for db.Next() {
-		var key string
-		var value string
-		db.Scan(&key, &value)
-		switch key {
-		case "mode":
-			mode = value
-		}
-	}
-	configFile.Inbound = make([]models.Inbound, 1)
-	db, _ = DB().Query("SELECT tag, data FROM inbound")
-	for db.Next() {
-		var tag string
 		var data string
-		db.Scan(&tag, &data)
-		switch tag {
-		case mode:
-			json.Unmarshal([]byte(data), &configFile.Inbound[0])
-		}
+		db.Scan(&data)
+		json.Unmarshal([]byte(data), &configFile.Inbound)
 	}
 	/*****************  outbound  *****************/
 	count_db, _ = DB().Query("SELECT * FROM outbound")

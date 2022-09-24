@@ -36,11 +36,12 @@ func Generator() (configFile models.ConfigFile) {
 		json.Unmarshal([]byte(data), &configFile.Route.Rules[i])
 	}
 	/*****************  inbound  *****************/
+	configFile.Inbound = make([]models.Inbound, 1)
 	db, _ = DB().Query("SELECT data FROM inbound")
 	for db.Next() {
 		var data string
 		db.Scan(&data)
-		json.Unmarshal([]byte(data), &configFile.Inbound)
+		json.Unmarshal([]byte(data), &configFile.Inbound[0])
 	}
 	/*****************  outbound  *****************/
 	count_db, _ = DB().Query("SELECT * FROM outbound")

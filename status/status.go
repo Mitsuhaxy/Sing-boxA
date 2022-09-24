@@ -90,13 +90,6 @@ func UpdateGeodata() (isSuccess bool) {
 	return true
 }
 
-func Mode(mode string) (isSuccess bool) {
-	db.Mode(mode)
-	Stop()
-	Start()
-	return true
-}
-
 func RunningStatus() (runningstatus string) {
 	return
 }

@@ -6,12 +6,6 @@ func Instance(command string) (isSuccess bool) {
 	return err == nil
 }
 
-func Mode(mode string) (isSuccess bool) {
-	db, err := DB().Prepare("UPDATE status SET value = ? WHERE key = 'mode'")
-	db.Exec(mode)
-	return err == nil
-}
-
 func GeodataDownloadUrl(geodata string, url string) (isSuccess bool) {
 	db, err := DB().Prepare("UPDATE status SET value = ? WHERE key = ?")
 	db.Exec(url, geodata)

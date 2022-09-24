@@ -3,8 +3,7 @@ package models
 type StatusInfo struct {
 	Instancestatus    string `json:"instancestatus"`
 	Sing_boxA_version string `json:"sing_boxa_version"`
-	Geodata_version   string `json:"seodata_version"`
-	Inbound_mode      string `json:"inbound_mode"`
+	Geodata_version   string `json:"geodata_version"`
 	Geoip_url         string `json:"geoip_url"`
 	Geosite_url       string `json:"geosite_url"`
 }

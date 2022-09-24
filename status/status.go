@@ -98,9 +98,7 @@ func Mode(mode string) (isSuccess bool) {
 }
 
 func RunningStatus() (runningstatus string) {
-	cmd := exec.Command("ps", "", "$(cat /var/run/sing-box.pid)")
-	cmd.Run()
-	cmd.Stdout = os.Stdout
+	return
 }
 
 func Sing_box_version() (sing_box_version string) {

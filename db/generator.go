@@ -54,12 +54,7 @@ func Generator() (configFile models.ConfigFile) {
 	db, _ = DB().Query("SELECT data FROM outbound")
 	for i := 0; db.Next(); i++ {
 		var data string
-		db.Scan(&data)
-		for i := 0; db.Next(); i++ {
-			var data string
-			db.Scan(&data)
-			json.Unmarshal([]byte(data), &configFile.Outbound[i])
-		}
+		json.Unmarshal([]byte(data), &configFile.Outbound[i])
 	}
 	db.Close()
 	return

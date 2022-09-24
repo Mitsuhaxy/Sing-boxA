@@ -14,6 +14,7 @@ func api_rule_add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		addRule := models.Rule{}
 		addRule.ID = uuid.New().String()
+		addRule.Inbound = "tproxy"
 		addRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
 		addRule.Network = r.FormValue("network")
 		addRule.Protocol = strings.Split(r.FormValue("protocol"), ",")

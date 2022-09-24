@@ -3,6 +3,7 @@ package status
 import (
 	"Sing-boxA/db"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -11,12 +12,12 @@ import (
 
 func Generator() (isSuccess bool) {
 	config, _ := json.Marshal(db.Generator())
-	f, err := os.Create("~/sing-box.json")
+	configfile, err := os.Create("/var/run/sing-box.json")
 	if err != nil {
 		return false
 	}
-	defer f.Close()
-	f.Write(config)
+	defer configfile.Close()
+	configfile.Write(config)
 	return err != nil
 
 }
@@ -33,13 +34,22 @@ func Instance(command string) (isSuccess bool) {
 
 func Start() (isSuccess bool) {
 	Generator()
-	cmd := exec.Command("sing-box", "run", "-c", "./sing-box.json")
+	cmd := exec.Command("sing-box", "run", "-c", ".sing-box.json")
+	cmd.Dir = "/var/run/"
+	pid := cmd.Process.Pid
+	pidfile, err := os.Create("/var/run/sing-box.pid")
+	if err != nil {
+		return false
+	}
+	defer pidfile.Close()
+	pidfile.Write([]byte(fmt.Sprintf("%d", pid)))
+
 	cmd.Run()
 	return true
 }
 
 func Stop() (isSuccess bool) {
-	cmd := exec.Command("kill", "-9", "$(ps -ef | grep 'sing-box run'")
+	cmd := exec.Command("kill", "-9", "$(cat /var/run/sing-box.pid)")
 	cmd.Run()
 	return true
 }
@@ -53,7 +63,7 @@ func UpdateGeodata() (isSuccess bool) {
 		return false
 	}
 	defer resp.Body.Close()
-	out, err := os.Create("geoip.db")
+	out, err := os.Create("/usr/share/sing-box/geoip.db")
 	if err != nil {
 		return false
 	}
@@ -68,7 +78,7 @@ func UpdateGeodata() (isSuccess bool) {
 		return false
 	}
 	defer resp.Body.Close()
-	out, err = os.Create("geosite.db")
+	out, err = os.Create("/usr/share/sing-box/geosite.db")
 	if err != nil {
 		panic(err)
 	}
@@ -88,9 +98,13 @@ func Mode(mode string) (isSuccess bool) {
 }
 
 func RunningStatus() (runningstatus string) {
-	return "stop"
+	cmd := exec.Command("ps", "", "$(cat /var/run/sing-box.pid)")
+	cmd.Run()
+	cmd.Stdout = os.Stdout
 }
 
 func Sing_box_version() (sing_box_version string) {
-	return "v1.0"
+	cmd := exec.Command("sing-box", "version")
+	data, _ := cmd.Output()
+	return string(data)
 }

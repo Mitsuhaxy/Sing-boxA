@@ -60,5 +60,6 @@ func Generator() (configFile models.ConfigFile) {
 			json.Unmarshal([]byte(data), &configFile.Outbound[i])
 		}
 	}
+	db.Close()
 	return
 }

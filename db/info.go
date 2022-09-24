@@ -29,6 +29,7 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		}
 
 	}
+	db.Close()
 	statusInfo.Sing_boxA_version = SBA_VERSION
 	return
 }

@@ -1,7 +1,7 @@
 package models
 
 type Rule struct {
-	ID         string   `json:"-"`
+	ID         string   `json:"id"`
 	Inbound    string   `json:"inbound"`
 	Ip_version int      `json:"ip_version"`
 	Network    string   `json:"network"`

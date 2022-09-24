@@ -1,15 +1,11 @@
 package models
 
 type Geoip struct {
-	Path            string `json:"path"`
-	Download_url    string `json:"download_url"`
-	Download_detour string `json:"download_detour"`
+	Path string `json:"path"`
 }
 
 type Geosite struct {
-	Path            string `json:"path"`
-	Download_url    string `json:"download_url"`
-	Download_detour string `json:"download_detour"`
+	Path string `json:"path"`
 }
 
 type Route struct {

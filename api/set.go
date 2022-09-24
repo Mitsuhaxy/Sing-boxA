@@ -31,12 +31,8 @@ func api_set_log(w http.ResponseWriter, r *http.Request) {
 func api_set_route(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		route := models.Route{}
-		route.Geoip.Path = r.FormValue("geoip_path")
-		route.Geoip.Download_url = r.FormValue("geoip_download_url")
-		route.Geoip.Download_detour = r.FormValue("geoip_download_detour")
-		route.Geosite.Path = r.FormValue("geosite_path")
-		route.Geosite.Download_url = r.FormValue("geosite_download_url")
-		route.Geosite.Download_detour = r.FormValue("geosite_download_detour")
+		route.Geoip.Path = "/usr/share/sing-box/geoip.db"
+		route.Geosite.Path = "/usr/share/sing-box/geosite.db"
 		route.Final = r.FormValue("final")
 		route.Auto_detect_interface = (r.FormValue("auto_detect_interface") == "true")
 		route.Default_mark = 255

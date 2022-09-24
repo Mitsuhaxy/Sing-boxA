@@ -8,7 +8,7 @@ import (
 
 func startweb(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		web, _ := template.ParseFiles("templates/hello.gtpl")
+		web, _ := template.ParseFiles("/templates/hello.gtpl")
 		log.Println(web.Execute(w, nil))
 	}
 }
@@ -35,8 +35,5 @@ func RunApi() {
 	http.HandleFunc("/api/rule/mod", api_rule_mod)
 	http.HandleFunc("/api/rule/del", api_rule_del)
 
-	err := http.ListenAndServe(":9090", nil)
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+	http.ListenAndServe(":9090", nil)
 }

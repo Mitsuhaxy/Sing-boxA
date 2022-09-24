@@ -27,7 +27,7 @@ func Generator() (configFile models.ConfigFile) {
 	for count_db.Next() {
 		count++
 	}
-	configFile.Route.Rules = make([]models.Rule, count)
+	configFile.Route.Rules = make([]models.ConfigRule, count)
 
 	db, _ = DB().Query("SELECT data FROM rules")
 	for i := 0; db.Next(); i++ {
@@ -50,7 +50,7 @@ func Generator() (configFile models.ConfigFile) {
 		count++
 	}
 
-	configFile.Outbound = make([]models.Outbound, count)
+	configFile.Outbound = make([]models.ConfigOutbound, count)
 	db, _ = DB().Query("SELECT data FROM outbound")
 	for i := 0; db.Next(); i++ {
 		var data string

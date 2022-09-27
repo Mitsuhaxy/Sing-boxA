@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -19,7 +20,6 @@ func Generator() (isSuccess bool) {
 	defer configfile.Close()
 	configfile.Write(config)
 	return err != nil
-
 }
 
 func Instance(command string) (isSuccess bool) {
@@ -34,7 +34,7 @@ func Instance(command string) (isSuccess bool) {
 
 func Start() (isSuccess bool) {
 	Generator()
-	cmd := exec.Command("sing-box", "run", "-c", ".sing-box.json")
+	cmd := exec.Command("sing-box", "run", "-c", "sing-box.json")
 	cmd.Dir = "/var/run/"
 	pid := cmd.Process.Pid
 	pidfile, err := os.Create("/var/run/sing-box.pid")
@@ -44,13 +44,19 @@ func Start() (isSuccess bool) {
 	defer pidfile.Close()
 	pidfile.Write([]byte(fmt.Sprintf("%d", pid)))
 
-	cmd.Run()
+	err = cmd.Run()
+	if err != nil {
+		log.Fatalf("failed to run: %v", err)
+	}
 	return true
 }
 
 func Stop() (isSuccess bool) {
 	cmd := exec.Command("kill", "-9", "$(cat /var/run/sing-box.pid)")
-	cmd.Run()
+	err := cmd.Run()
+	if err != nil {
+		log.Fatalf("failed to stop: %v", err)
+	}
 	return true
 }
 

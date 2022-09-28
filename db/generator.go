@@ -36,7 +36,7 @@ func Generator() (configFile models.ConfigFile) {
 		json.Unmarshal([]byte(data), &configFile.Route.Rules[i])
 	}
 	/*****************  inbound  *****************/
-	configFile.Inbounds = make([]models.Inbound, 1)
+	configFile.Inbounds = make([]models.Inbounds, 1)
 	db, _ = DB().Query("SELECT data FROM inbound")
 	for db.Next() {
 		var data string

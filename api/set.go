@@ -51,7 +51,7 @@ func api_set_route(w http.ResponseWriter, r *http.Request) {
 
 func api_set_inbound(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		inbound := models.Inbound{}
+		inbound := models.Inbounds{}
 		inbound.Type = "tproxy"
 		inbound.Listen = "127.0.0.1"
 		inbound.Listen_port = 1080

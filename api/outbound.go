@@ -14,7 +14,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		isSuccess := false
 
-		addOutbound := models.Outbound{}
+		addOutbound := models.Outbounds{}
 		addOutbound.ID = uuid.New().String()
 		addOutbound.Tag = r.FormValue("tag")
 		addOutbound.Type = r.FormValue("type")
@@ -74,7 +74,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		isSuccess := false
 
-		modOutbound := models.Outbound{}
+		modOutbound := models.Outbounds{}
 		modOutbound.ID = r.FormValue("id")
 		modOutbound.Tag = r.FormValue("tag")
 		modOutbound.Type = r.FormValue("type")

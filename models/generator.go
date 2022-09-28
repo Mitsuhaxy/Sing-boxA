@@ -1,10 +1,10 @@
 package models
 
 type ConfigFile struct {
-	Log      Log              `json:"log"`
-	Route    ConfigRoute      `json:"route"`
-	Inbound  []Inbound        `json:"inbounds"`
-	Outbound []ConfigOutbound `json:"outbounds"`
+	Log       Log              `json:"log"`
+	Route     ConfigRoute      `json:"route"`
+	Inbounds  []Inbound        `json:"inbounds"`
+	Outbounds []ConfigOutbound `json:"outbounds"`
 }
 
 type ConfigRoute struct {

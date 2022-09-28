@@ -12,7 +12,7 @@ func api_set_log(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		setLog := models.Log{}
 		setLog.Disabled = (r.FormValue("disabled") == "true")
-		setLog.Leavel = r.FormValue("leavel")
+		setLog.Level = r.FormValue("level")
 		setLog.Output = r.FormValue("output")
 		setLog.Timestamp = (r.FormValue("timestamp") == "true")
 

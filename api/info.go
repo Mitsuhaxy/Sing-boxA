@@ -15,27 +15,27 @@ func api_get_info_status(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func api_get_info_inbound(w http.ResponseWriter, r *http.Request) {
+func api_get_info_inbounds(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		info, _ := json.Marshal(db.InboundInfo())
+		info, _ := json.Marshal(db.InboundsInfo())
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		w.Write(info)
 	}
 }
 
-func api_get_info_outbound(w http.ResponseWriter, r *http.Request) {
+func api_get_info_outbounds(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		info, _ := json.Marshal(db.OutboundInfo())
+		info, _ := json.Marshal(db.OutboundsInfo())
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		w.Write(info)
 	}
 }
 
-func api_get_info_rule(w http.ResponseWriter, r *http.Request) {
+func api_get_info_rules(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		info, _ := json.Marshal(db.RuleInfo())
+		info, _ := json.Marshal(db.RulesInfo())
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		w.Write(info)

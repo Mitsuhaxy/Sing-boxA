@@ -1,22 +1,22 @@
 package models
 
 type ConfigFile struct {
-	Log       Log              `json:"log"`
-	Route     ConfigRoute      `json:"route"`
-	Inbounds  []Inbound        `json:"inbounds"`
-	Outbounds []ConfigOutbound `json:"outbounds"`
+	Log       Log               `json:"log"`
+	Route     ConfigRoute       `json:"route"`
+	Inbounds  []Inbounds        `json:"inbounds"`
+	Outbounds []ConfigOutbounds `json:"outbounds"`
 }
 
 type ConfigRoute struct {
-	Geoip                 Geoip        `json:"geoip"`
-	Geosite               Geosite      `json:"geosite"`
-	Rules                 []ConfigRule `json:"rules"`
-	Final                 string       `json:"final"`
-	Auto_detect_interface bool         `json:"auto_detect_interface"`
-	Default_mark          int          `json:"default_mark"`
+	Geoip                 Geoip         `json:"geoip"`
+	Geosite               Geosite       `json:"geosite"`
+	Rules                 []ConfigRules `json:"rules"`
+	Final                 string        `json:"final"`
+	Auto_detect_interface bool          `json:"auto_detect_interface"`
+	Default_mark          int           `json:"default_mark"`
 }
 
-type ConfigOutbound struct {
+type ConfigOutbounds struct {
 	ID                    string    `json:"-"`
 	Tag                   string    `json:"tag"`
 	Type                  string    `json:"type"`
@@ -55,7 +55,7 @@ type ConfigOutbound struct {
 	Disable_mtu_discovery bool      `json:"disable_mtu_discovery"`
 }
 
-type ConfigRule struct {
+type ConfigRules struct {
 	ID         string   `json:"-"`
 	Inbound    string   `json:"inbound"`
 	Ip_version int      `json:"ip_version"`

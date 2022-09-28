@@ -1,6 +1,6 @@
 package models
 
-type Rule struct {
+type Rules struct {
 	ID         string   `json:"id"`
 	Inbound    string   `json:"inbound"`
 	Ip_version int      `json:"ip_version"`

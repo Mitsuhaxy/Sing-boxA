@@ -1,6 +1,6 @@
 package models
 
-type Inbound struct {
+type Inbounds struct {
 	Type                       string `json:"type"`
 	Listen                     string `json:"listen"`
 	Listen_port                int    `json:"listen_port"`

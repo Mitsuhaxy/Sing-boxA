@@ -13,12 +13,12 @@ import (
 
 func Generator() (isSuccess bool) {
 	config, _ := json.Marshal(db.Generator())
-	configfile, err := os.Create("/var/run/sing-box.json")
+	configFile, err := os.Create("/var/run/sing-box.json")
 	if err != nil {
 		return false
 	}
-	defer configfile.Close()
-	configfile.Write(config)
+	defer configFile.Close()
+	configFile.Write(config)
 	return err != nil
 }
 
@@ -41,12 +41,12 @@ func Start() (isSuccess bool) {
 		log.Fatalf("failed to run: %v", err)
 	}
 	pid := cmd.Process.Pid
-	pidfile, err := os.Create("/var/run/sing-box.pid")
+	pidFile, err := os.Create("/var/run/sing-box.pid")
 	if err != nil {
 		return false
 	}
-	defer pidfile.Close()
-	pidfile.Write([]byte(fmt.Sprintf("%d", pid)))
+	defer pidFile.Close()
+	pidFile.Write([]byte(fmt.Sprintf("%d", pid)))
 
 	return true
 }
@@ -107,12 +107,12 @@ func Sing_box_version() (sing_box_version string) {
 }
 
 func StartTproxy() (isSuccess bool) {
-	startproxyshell, err := os.Create("/var/run/sing-box_start.sh")
+	starTproxyShell, err := os.Create("/var/run/sing-box_start.sh")
 	if err != nil {
 		return false
 	}
-	defer startproxyshell.Close()
-	startproxyshell.Write([]byte(`
+	defer starTproxyShell.Close()
+	starTproxyShell.Write([]byte(`
 	#!/bin/sh
 	ipset create lan4 hash:net family inet hashsize 1024
 	ipset add lan4 0.0.0.0/8
@@ -151,12 +151,12 @@ func StartTproxy() (isSuccess bool) {
 }
 
 func StopTproxy() (isSuccess bool) {
-	stoptproxyshell, err := os.Create("/var/run/sing-box_stop.sh")
+	stopTproxyShell, err := os.Create("/var/run/sing-box_stop.sh")
 	if err != nil {
 		return false
 	}
-	defer stoptproxyshell.Close()
-	stoptproxyshell.Write([]byte(`
+	defer stopTproxyShell.Close()
+	stopTproxyShell.Write([]byte(`
 	#!/bin/sh
 	iptables -t mangle --flush PREROUTING
 	iptables -t mangle --flush OUTPUT

@@ -107,7 +107,12 @@ func Sing_box_version() (sing_box_version string) {
 }
 
 func StartTproxy() (isSuccess bool) {
-	startproxy := []byte(`
+	startproxyshell, err := os.Create("/var/run/sing-box_start.sh")
+	if err != nil {
+		return false
+	}
+	defer startproxyshell.Close()
+	startproxyshell.Write([]byte(`
 	#!/bin/sh
 	ipset create lan4 hash:net family inet hashsize 1024
 	ipset add lan4 0.0.0.0/8
@@ -135,16 +140,10 @@ func StartTproxy() (isSuccess bool) {
 	iptables -t mangle -A OUTPUT -m mark --mark 0xff/0xffffffff -j RETURN
 	iptables -t mangle -A OUTPUT -p tcp -j MARK --set-mark 0xffff
 	iptables -t mangle -A OUTPUT -p udp -j MARK --set-mark 0xffff
-	`)
-	startproxyshell, err := os.Create("/var/run/sing-box_start.sh")
-	if err != nil {
-		return false
-	}
-	defer startproxyshell.Close()
-	startproxyshell.Write(startproxy)
+	`))
 	cmd := exec.Command("chmod", "0755", "/var/run/sing-box_start.sh")
 	err = cmd.Run()
-	if err != nil {
+	if err == nil {
 		cmd = exec.Command("sh", "-c", "/var/run/sing-box_start.sh")
 		err = cmd.Run()
 	}
@@ -152,7 +151,12 @@ func StartTproxy() (isSuccess bool) {
 }
 
 func StopTproxy() (isSuccess bool) {
-	stoptproxy := []byte(`
+	stoptproxyshell, err := os.Create("/var/run/sing-box_stop.sh")
+	if err != nil {
+		return false
+	}
+	defer stoptproxyshell.Close()
+	stoptproxyshell.Write([]byte(`
 	#!/bin/sh
 	iptables -t mangle --flush PREROUTING
 	iptables -t mangle --flush OUTPUT
@@ -160,16 +164,10 @@ func StopTproxy() (isSuccess bool) {
 	ip route del local default dev lo table 65535
 
 	ipset destroy lan4
-	`)
-	stoptproxyshell, err := os.Create("/var/run/sing-box_stop.sh")
-	if err != nil {
-		return false
-	}
-	defer stoptproxyshell.Close()
-	stoptproxyshell.Write(stoptproxy)
+	`))
 	cmd := exec.Command("chmod", "0755", "/var/run/sing-box_stop.sh")
 	err = cmd.Run()
-	if err != nil {
+	if err == nil {
 		cmd = exec.Command("sh", "-c", "/var/run/sing-box_stop.sh")
 		err = cmd.Run()
 	}

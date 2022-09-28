@@ -27,10 +27,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 		addOutbound.Obfs_param = r.FormValue("obfs_param")
 		addOutbound.Password = r.FormValue("password")
 		addOutbound.Udp_over_tcp = (r.FormValue("udp_over_tcp") == "true")
-		if r.FormValue("uuid") != "" {
-			addOutbound.UUID = r.FormValue("uuid")
-		}
-
+		addOutbound.UUID = r.FormValue("uuid")
 		addOutbound.Security = r.FormValue("security")
 		addOutbound.System_interface = (r.FormValue("system_interface") == "true")
 		addOutbound.Interface_name = r.FormValue("interface_name")

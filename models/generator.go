@@ -35,7 +35,6 @@ type ConfigOutbounds struct {
 	Packet_encoding       string    `json:"packet_encoding,omitempty"`
 	Transport             Transport `json:"transport,omitempty"`
 	UUID                  string    `json:"uuid,omitempty"`
-	Network               string    `json:"network,omitempty"`
 	Security              string    `json:"security,omitempty"`
 	System_interface      bool      `json:"system_interface,omitempty"`
 	Interface_name        string    `json:"interface_name,omitempty"`

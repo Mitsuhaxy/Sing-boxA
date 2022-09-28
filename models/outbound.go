@@ -41,7 +41,6 @@ type Outbounds struct {
 	Packet_encoding       string    `json:"packet_encoding"`
 	Transport             Transport `json:"transport"`
 	UUID                  string    `json:"uuid"`
-	Network               string    `json:"network"`
 	Security              string    `json:"security"`
 	System_interface      bool      `json:"system_interface"`
 	Interface_name        string    `json:"interface_name"`

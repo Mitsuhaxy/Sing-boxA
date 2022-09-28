@@ -26,9 +26,11 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 		addOutbound.Obfs = r.FormValue("obfs")
 		addOutbound.Obfs_param = r.FormValue("obfs_param")
 		addOutbound.Password = r.FormValue("password")
-		addOutbound.Network = r.FormValue("network")
 		addOutbound.Udp_over_tcp = (r.FormValue("udp_over_tcp") == "true")
-		addOutbound.UUID = r.FormValue("uuid")
+		if r.FormValue("uuid") != "" {
+			addOutbound.UUID = r.FormValue("uuid")
+		}
+
 		addOutbound.Security = r.FormValue("security")
 		addOutbound.System_interface = (r.FormValue("system_interface") == "true")
 		addOutbound.Interface_name = r.FormValue("interface_name")
@@ -86,7 +88,6 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 		modOutbound.Obfs = r.FormValue("obfs")
 		modOutbound.Obfs_param = r.FormValue("obfs_param")
 		modOutbound.Password = r.FormValue("password")
-		modOutbound.Network = r.FormValue("network")
 		modOutbound.Udp_over_tcp = (r.FormValue("udp_over_tcp") == "true")
 		modOutbound.UUID = r.FormValue("uuid")
 		modOutbound.Security = r.FormValue("security")

@@ -52,11 +52,14 @@ func api_set_route(w http.ResponseWriter, r *http.Request) {
 func api_set_inbound(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		inbound := models.Inbounds{}
-		inbound.Type = "tproxy"
-		inbound.Listen = "127.0.0.1"
-		inbound.Listen_port = 1080
-		inbound.Sniff = (r.FormValue("sniff") == "true")
-		inbound.Sniff_override_destination = (r.FormValue("sniff_override_destination") == "true")
+		inbound.Type = "tun"
+		inbound.Tag = "tun_in"
+		inbound.Interface_name = "tun"
+		inbound.Mtu = 9000
+		inbound.Auto_route = true
+		inbound.Inet4_address = r.FormValue("inet4_address")
+		inbound.Inet6_address = r.FormValue("inet6_address")
+		inbound.Strict_route = (r.FormValue("strict_route") == "true")
 		if db.Inbound(inbound) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)

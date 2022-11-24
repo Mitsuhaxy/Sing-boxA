@@ -7,8 +7,6 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-const SBA_VERSION string = "b1.0"
-
 func StatusInfo() (statusInfo models.StatusInfo) {
 	db, _ := DB().Query("SELECT * FROM status")
 	for db.Next() {
@@ -24,7 +22,6 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 
 	}
 	db.Close()
-	statusInfo.Sing_boxA_version = SBA_VERSION
 	return
 }
 

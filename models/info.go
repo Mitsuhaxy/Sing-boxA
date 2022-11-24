@@ -2,7 +2,6 @@ package models
 
 type StatusInfo struct {
 	Instancestatus    string `json:"instancestatus"`
-	Sing_boxA_version string `json:"sing-boxa_version"`
 	Geodata_version   string `json:"geodata_version"`
 }
 

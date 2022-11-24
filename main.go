@@ -16,7 +16,7 @@ func main() {
 			api.RunApi()
 		case "version":
 		}
-		fmt.println(SBA_VERSION)
+		fmt.Println(SBA_VERSION)
 	}
 	
 }

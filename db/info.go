@@ -19,7 +19,6 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		case "geodata_version":
 			statusInfo.Geodata_version = value
 		}
-
 	}
 	db.Close()
 	return

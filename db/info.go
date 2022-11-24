@@ -20,10 +20,6 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 			statusInfo.Instancestatus = value
 		case "geodata_version":
 			statusInfo.Geodata_version = value
-		case "geoip_url":
-			statusInfo.Geoip_url = value
-		case "geosite_url":
-			statusInfo.Geosite_url = value
 		}
 
 	}

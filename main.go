@@ -10,13 +10,13 @@ import (
 const SBA_VERSION string = "b1.0"
 
 func main() {
-	for _, args :=range os.Args {
-		switch strconv.Itoa(1) {
+	for _, args := range os.Args {
+		switch args[1] {
 		case "run":
 			api.RunApi()
 		case "version":
+			fmt.Println(SBA_VERSION)
 		}
-		fmt.Println(SBA_VERSION)
 	}
 	
 }

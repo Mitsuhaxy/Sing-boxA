@@ -12,7 +12,8 @@ import (
 
 func api_rule_add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		addRule := models.Rules{}
+		
+		addRule := models.Rule{}
 		addRule.ID = uuid.New().String()
 		addRule.Inbound = "tproxy"
 		addRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
@@ -24,6 +25,7 @@ func api_rule_add(w http.ResponseWriter, r *http.Request) {
 		addRule.Ip_cidr = strings.Split(r.FormValue("ip_cidr"), ",")
 		addRule.Port_range = strings.Split(r.FormValue("port_range"), ",")
 		addRule.Outbound = r.FormValue("outbound")
+		
 		if db.Add_Rule(addRule) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
@@ -38,7 +40,8 @@ func api_rule_add(w http.ResponseWriter, r *http.Request) {
 
 func api_rule_mod(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		modRule := models.Rules{}
+		
+		modRule := models.Rule{}
 		modRule.ID = r.FormValue("id")
 		modRule.Inbound = "tproxy"
 		modRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
@@ -50,6 +53,7 @@ func api_rule_mod(w http.ResponseWriter, r *http.Request) {
 		modRule.Ip_cidr = strings.Split(r.FormValue("ip_cidr"), ",")
 		modRule.Port_range = strings.Split(r.FormValue("port_range"), ",")
 		modRule.Outbound = r.FormValue("outbound")
+		
 		if db.Mod_Rule(modRule) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
@@ -63,6 +67,7 @@ func api_rule_mod(w http.ResponseWriter, r *http.Request) {
 }
 
 func api_rule_del(w http.ResponseWriter, r *http.Request) {
+	
 	if r.Method == "POST" {
 		ID := r.FormValue("id")
 		if db.Del_Rule(ID) {

@@ -1,10 +1,10 @@
 package models
 
 type ConfigFile struct {
-	Log       ConfigLog         `json:"log"`
-	Route     ConfigRoute       `json:"route"`
-	Inbounds  []ConfigInbound   `json:"inbounds"`
-	Outbounds []ConfigOutbound  `json:"outbounds"`
+	Log       ConfigLog        `json:"log"`
+	Route     ConfigRoute      `json:"route"`
+	Inbounds  []ConfigInbound  `json:"inbounds"`
+	Outbounds []ConfigOutbound `json:"outbounds"`
 }
 
 type ConfigLog struct {
@@ -15,12 +15,12 @@ type ConfigLog struct {
 }
 
 type ConfigRoute struct {
-	Geoip                 Geoip         `json:"geoip"`
-	Geosite               Geosite       `json:"geosite"`
-	Rules                 []ConfigRule  `json:"rules"`
-	Final                 string        `json:"final"`
-	Auto_detect_interface bool          `json:"auto_detect_interface"`
-	Default_mark          int           `json:"default_mark"`
+	Geoip                 Geoip        `json:"geoip"`
+	Geosite               Geosite      `json:"geosite"`
+	Rules                 []ConfigRule `json:"rules"`
+	Final                 string       `json:"final"`
+	Auto_detect_interface bool         `json:"auto_detect_interface"`
+	Default_mark          int          `json:"default_mark"`
 }
 
 type ConfigInbound struct {
@@ -40,7 +40,7 @@ type ConfigOutbound struct {
 	Type                  string    `json:"type"`
 	Server                string    `json:"server"`
 	Server_port           int       `json:"server_port"`
-	Version           	  int       `json:"version"`
+	Version               int       `json:"version"`
 	Method                string    `json:"method"`
 	Plugin                string    `json:"plugin"`
 	Plugin_opts           string    `json:"plugin_opts"`

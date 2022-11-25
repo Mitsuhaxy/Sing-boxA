@@ -66,7 +66,7 @@ func Generator() (configFile models.ConfigFile) {
 fucn CheckOutboundType(data *string) (checkdone []byte()) {
 	check := make(map(string[]string))
 	json.Unmarshal([]byte(data), &check)
-	outbounType, _ := check["type"]
+	outboundType, _ := check["type"]
 	switch outboundType {
 		case "shadowsocks":
 			{}

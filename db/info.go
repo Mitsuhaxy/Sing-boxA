@@ -14,7 +14,7 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		var value string
 		db.Scan(&key, &value)
 		switch key {
-		case "instance":
+		case "instance_status":
 			statusInfo.Instance_status = value
 		case "geodata_version":
 			statusInfo.Geodata_version = value
@@ -48,7 +48,6 @@ func OutboundsInfo() (outboundsInfo models.OutboundInfo) {
 		var data string
 		db.Scan(&data)
 		json.Unmarshal([]byte(data), &outboundsInfo.Outbounds[i])
-
 	}
 	return
 }

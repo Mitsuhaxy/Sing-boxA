@@ -55,8 +55,34 @@ func Generator() (configFile models.ConfigFile) {
 	for i := 0; db.Next(); i++ {
 		var data string
 		db.Scan(&data)
-		json.Unmarshal([]byte(data), &configFile.Outbounds[i])
+
+		configFile.Outbounds[i] = CheckOutboundType(&data)
+		// json.Unmarshal([]byte(data), &configFile.Outbounds[i])
 	}
 	db.Close()
 	return
+}
+
+fucn CheckOutboundType(data *string) (checkdone []byte()) {
+	check := make(map(string[]string))
+	json.Unmarshal([]byte(data), &check)
+	outbounType, _ := check["type"]
+	switch outbounType {
+		case "shadowsocks":
+			{}
+		case "vmess":
+			{}
+		case "trojan":
+			{}
+		case "wireguard":
+			{}
+		case "hysteria":
+			{}
+		case "shadowsocksr":
+			{}
+		case "vless":
+			{}
+		case "shadowtls":
+			{}
+	}
 }

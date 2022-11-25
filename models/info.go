@@ -6,15 +6,15 @@ type StatusInfo struct {
 }
 
 type InboundInfo struct {
-	Inbounds []Inbounds `json:"inbounds"`
+	Inbounds []Inbound `json:"inbounds"`
 }
 
 type OutboundInfo struct {
-	Outbounds []Outbounds `json:"outbounds"`
+	Outbounds []Outbound `json:"outbounds"`
 }
 
 type RuleInfo struct {
-	Rules []Rules `json:"rules"`
+	Rules []Rule `json:"rules"`
 }
 
 type RouteInfo struct {

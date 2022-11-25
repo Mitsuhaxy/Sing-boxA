@@ -22,7 +22,7 @@ type Transport struct {
 	Server_name            string   `json:"server_name"`
 }
 
-type Outbounds struct {
+type Outbound struct {
 	ID                    string    `json:"id"`
 	Tag                   string    `json:"tag"`
 	Type                  string    `json:"type"`

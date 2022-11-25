@@ -1,6 +1,6 @@
 package models
 
-type Inbounds struct {
+type Inbound struct {
 	Type           string `json:"type"`
 	Tag            string `json:"tag"`
 	Interface_name string `json:"interface_name"`

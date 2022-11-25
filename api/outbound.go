@@ -14,12 +14,13 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		isSuccess := false
 
-		addOutbound := models.Outbounds{}
+		addOutbound := models.Outbound{}
 		addOutbound.ID = uuid.New().String()
 		addOutbound.Tag = r.FormValue("tag")
 		addOutbound.Type = r.FormValue("type")
 		addOutbound.Server = r.FormValue("server")
 		addOutbound.Server_port, _ = strconv.Atoi(r.FormValue("server_port"))
+		addOutbound.Version = r.FormValue("version")
 		addOutbound.Method = r.FormValue("method")
 		addOutbound.Plugin = r.FormValue("plugin")
 		addOutbound.Plugin_opts = r.FormValue("plugin_opts")

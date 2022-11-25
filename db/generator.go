@@ -67,7 +67,7 @@ fucn CheckOutboundType(data *string) (checkdone []byte()) {
 	check := make(map(string[]string))
 	json.Unmarshal([]byte(data), &check)
 	outbounType, _ := check["type"]
-	switch outbounType {
+	switch outboundType {
 		case "shadowsocks":
 			{}
 		case "vmess":

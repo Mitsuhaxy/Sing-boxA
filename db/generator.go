@@ -63,7 +63,7 @@ func Generator() (configFile models.ConfigFile) {
 	return
 }
 
-fucn CheckOutboundType(data *string) (checkdone []byte()) {
+func CheckOutboundType(data *string) (checkdone []byte) {
 	check := make(map(string[]string))
 	json.Unmarshal([]byte(data), &check)
 	outboundType, _ := check["type"]

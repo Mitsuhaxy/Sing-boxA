@@ -19,7 +19,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 		addOutbound.Type = r.FormValue("type")
 		addOutbound.Server = r.FormValue("server")
 		addOutbound.Server_port, _ = strconv.Atoi(r.FormValue("server_port"))
-		addOutbound.Version = r.FormValue("version")
+		addOutbound.Version, _ = strconv.Atoi(r.FormValue("version"))
 		addOutbound.Method = r.FormValue("method")
 		addOutbound.Plugin = r.FormValue("plugin")
 		addOutbound.Plugin_opts = r.FormValue("plugin_opts")
@@ -70,12 +70,13 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 
-		modOutbound := models.Outbounds{}
+		modOutbound := models.Outbound{}
 		modOutbound.ID = r.FormValue("id")
 		modOutbound.Tag = r.FormValue("tag")
 		modOutbound.Type = r.FormValue("type")
 		modOutbound.Server = r.FormValue("server")
 		modOutbound.Server_port, _ = strconv.Atoi(r.FormValue("server_port"))
+		modOutbound.Version, _ = strconv.Atoi(r.FormValue("version"))
 		modOutbound.Method = r.FormValue("method")
 		modOutbound.Plugin = r.FormValue("plugin")
 		modOutbound.Plugin_opts = r.FormValue("plugin_opts")
@@ -125,7 +126,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 
 func api_outbound_del(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		
+
 		if db.Del_Outbound(r.FormValue("id")) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)

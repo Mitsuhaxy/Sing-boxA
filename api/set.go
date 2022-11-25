@@ -51,7 +51,7 @@ func api_set_route(w http.ResponseWriter, r *http.Request) {
 
 func api_set_inbound(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		inbound := models.Inbounds{}
+		inbound := models.Inbound{}
 		inbound.Type = "tun"
 		inbound.Tag = "tun_in"
 		inbound.Interface_name = "tun"

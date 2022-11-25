@@ -25,7 +25,7 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 }
 
 func InboundsInfo() (inboundsInfo models.InboundsInfo) {
-	inboundsInfo.Inbounds = make([]models.Inbounds, 1)
+	inboundsInfo.Inbounds = make([]models.Inbound, 1)
 	db, _ := DB().Query("SELECT data FROM inbound")
 	for db.Next() {
 		var data string
@@ -35,14 +35,14 @@ func InboundsInfo() (inboundsInfo models.InboundsInfo) {
 	return
 }
 
-func OutboundsInfo() (outboundsInfo models.OutboundInfo) {
+func OutboundsInfo() (outboundsInfo models.OutboundsInfo) {
 	count_db, _ := DB().Query("SELECT * FROM outbound")
 	count := 0
 	for count_db.Next() {
 		count++
 	}
 
-	outboundsInfo.Outbounds = make([]models.Outbounds, count)
+	outboundsInfo.Outbounds = make([]models.Outbound, count)
 	db, _ := DB().Query("SELECT data FROM outbound")
 	for i := 0; db.Next(); i++ {
 		var data string
@@ -52,19 +52,19 @@ func OutboundsInfo() (outboundsInfo models.OutboundInfo) {
 	return
 }
 
-func RulesInfo() (ruleInfo models.RuleInfo) {
+func RulesInfo() (rulesInfo models.RulesInfo) {
 	count_db, _ := DB().Query("SELECT * FROM rules")
 	count := 0
 	for count_db.Next() {
 		count++
 	}
-	ruleInfo.Rules = make([]models.Rules, count)
+	rulesInfo.Rules = make([]models.Rule, count)
 
 	db, _ := DB().Query("SELECT data FROM rules")
 	for i := 0; db.Next(); i++ {
 		var data string
 		db.Scan(&data)
-		json.Unmarshal([]byte(data), &ruleInfo.Rules[i])
+		json.Unmarshal([]byte(data), &rulesInfo.Rules[i])
 	}
 	return
 }

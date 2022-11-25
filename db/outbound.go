@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 )
 
-func Add_Outbound(outbound models.Outbounds) (isSuccess bool) {
+func Add_Outbound(outbound models.Outbound) (isSuccess bool) {
 	outboundJson, _ := json.Marshal(outbound)
 	db, err := DB().Prepare("INSERT INTO outbound(id, tag, data) VALUES(?, ?, ?)")
 	db.Exec(outbound.ID, outbound.Tag, string(outboundJson))
@@ -14,7 +14,7 @@ func Add_Outbound(outbound models.Outbounds) (isSuccess bool) {
 	return err == nil
 }
 
-func Mod_Outbound(outbound models.Outbounds) (isSuccess bool) {
+func Mod_Outbound(outbound models.Outbound) (isSuccess bool) {
 	outboundJson, _ := json.Marshal(outbound)
 	db, err := DB().Prepare("UPDATE outbound SET tag = ?, data = ? WHERE id = ?")
 	db.Exec(outbound.Tag, string(outboundJson), outbound.ID)

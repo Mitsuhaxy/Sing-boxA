@@ -103,42 +103,6 @@ func CheckOutboundType(data *string) (checkdone []byte) {
 			checkdone, _ = json.Marshal(check)
 			return checkdone
 		}
-	case "wireguard":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
-	case "hysteria":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
-	case "shadowsocksr":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
 	case "vless":
 		{
 			for k := range check {

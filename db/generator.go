@@ -55,78 +55,8 @@ func Generator() (configFile models.ConfigFile) {
 	for i := 0; db.Next(); i++ {
 		var data string
 		db.Scan(&data)
-
-		json.Unmarshal(CheckOutboundType(&data), &configFile.Outbounds[i])
+		json.Unmarshal([]byte(data), &configFile.Outbounds[i])
 	}
 	db.Close()
 	return
-}
-
-func CheckOutboundType(data *string) (checkdone []byte) {
-	check := make(map[string]string)
-	json.Unmarshal([]byte(*data), &check)
-	outboundType := check["type"]
-	switch outboundType {
-	case "shadowsocks":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "network" || k == "udp_over_tcp" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
-	case "vmess":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "uuid" || k == "security" || k == "network" || k == "tls" || k == "transport" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
-	case "trojan":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "password" || k == "network" || k == "tls" || k == "transport" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
-	case "vless":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "uuid" || k == "network" || k == "tls" || k == "transport" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
-	case "shadowtls":
-		{
-			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "version" || k == "password" || k == "tls" {
-					return
-				} else {
-					delete(check, k)
-				}
-			}
-			checkdone, _ = json.Marshal(check)
-			return checkdone
-		}
-	}
-	return checkdone
 }

@@ -15,7 +15,7 @@ func api_rule_add(w http.ResponseWriter, r *http.Request) {
 
 		addRule := models.Rule{}
 		addRule.ID = uuid.New().String()
-		addRule.Inbound = "tproxy"
+		addRule.Inbound = "tun_in"
 		addRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
 		addRule.Network = r.FormValue("network")
 		addRule.Protocol = strings.Split(r.FormValue("protocol"), ",")
@@ -43,7 +43,7 @@ func api_rule_mod(w http.ResponseWriter, r *http.Request) {
 
 		modRule := models.Rule{}
 		modRule.ID = r.FormValue("id")
-		modRule.Inbound = "tproxy"
+		modRule.Inbound = "tun_in"
 		modRule.Ip_version, _ = strconv.Atoi(r.FormValue("ip_version"))
 		modRule.Network = r.FormValue("network")
 		modRule.Protocol = strings.Split(r.FormValue("protocol"), ",")

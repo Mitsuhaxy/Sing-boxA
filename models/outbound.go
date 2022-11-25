@@ -26,7 +26,6 @@ type Outbound struct {
 	Version      int       `json:"version"`
 	Method       string    `json:"method"`
 	Network      string    `json:"network"`
-	Protocol     string    `json:"protocol"`
 	Password     string    `json:"password"`
 	Udp_over_tcp bool      `json:"udp_over_tcp"`
 	TLS          TLS       `json:"tls"`

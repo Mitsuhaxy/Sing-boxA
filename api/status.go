@@ -11,8 +11,8 @@ func api_status_instance(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		command := r.FormValue("command")
 		if command == "run" || command == "stop" {
-			if db.Instance(command) {
-				if status.Instance(command) {
+			if status.Instance(command) {
+				if db.Instance(command) {
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusCreated)
 					w.Write([]byte(`{"info": "success"}`))

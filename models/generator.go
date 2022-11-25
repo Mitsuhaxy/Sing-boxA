@@ -1,10 +1,17 @@
 package models
 
 type ConfigFile struct {
-	Log       Log               `json:"log"`
+	Log       ConfigLog         `json:"log"`
 	Route     ConfigRoute       `json:"route"`
-	Inbounds  []Inbounds        `json:"inbounds"`
+	Inbounds  []ConfigInbounds  `json:"inbounds"`
 	Outbounds []ConfigOutbounds `json:"outbounds"`
+}
+
+type ConfigLog struct {
+	Disabled  bool   `json:"disabled"`
+	Level     string `json:"level"`
+	Output    string `json:"output"`
+	Timestamp bool   `json:"timestamp"`
 }
 
 type ConfigRoute struct {
@@ -14,6 +21,17 @@ type ConfigRoute struct {
 	Final                 string        `json:"final"`
 	Auto_detect_interface bool          `json:"auto_detect_interface"`
 	Default_mark          int           `json:"default_mark"`
+}
+
+type ConfigInbound struct {
+	Type           string `json:"type"`
+	Tag            string `json:"tag"`
+	Interface_name string `json:"interface_name"`
+	Mtu            int    `json:"mtu"`
+	Auto_route     bool   `json:"auto_route"`
+	Inet4_address  string `json:"inet4_address"`
+	Inet6_address  string `json:"inet6_address"`
+	Strict_route   bool   `json:"strict_route"`
 }
 
 type ConfigOutbounds struct {

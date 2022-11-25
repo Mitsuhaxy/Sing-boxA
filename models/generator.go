@@ -3,8 +3,8 @@ package models
 type ConfigFile struct {
 	Log       ConfigLog         `json:"log"`
 	Route     ConfigRoute       `json:"route"`
-	Inbounds  []ConfigInbounds  `json:"inbounds"`
-	Outbounds []ConfigOutbounds `json:"outbounds"`
+	Inbounds  []ConfigInbound   `json:"inbounds"`
+	Outbounds []ConfigOutbound  `json:"outbounds"`
 }
 
 type ConfigLog struct {
@@ -34,7 +34,7 @@ type ConfigInbound struct {
 	Strict_route   bool   `json:"strict_route"`
 }
 
-type ConfigOutbounds struct {
+type ConfigOutbound struct {
 	ID                    string    `json:"-"`
 	Tag                   string    `json:"tag"`
 	Type                  string    `json:"type"`

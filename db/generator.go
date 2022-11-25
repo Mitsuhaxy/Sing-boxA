@@ -70,7 +70,7 @@ func CheckOutboundType(data *string) (checkdone []byte) {
 	case "shadowsocks":
 		{
 			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "network" || k == "udp_over_tcp" {
 					return
 				} else {
 					delete(check, k)
@@ -82,7 +82,7 @@ func CheckOutboundType(data *string) (checkdone []byte) {
 	case "vmess":
 		{
 			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "uuid" || k == "security" || k == "network" || k == "tls" || k == "transport" {
 					return
 				} else {
 					delete(check, k)
@@ -94,7 +94,7 @@ func CheckOutboundType(data *string) (checkdone []byte) {
 	case "trojan":
 		{
 			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "password" || k == "network" || k == "tls" || k == "transport" {
 					return
 				} else {
 					delete(check, k)
@@ -106,7 +106,7 @@ func CheckOutboundType(data *string) (checkdone []byte) {
 	case "vless":
 		{
 			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "uuid" || k == "network" || k == "tls" || k == "transport" {
 					return
 				} else {
 					delete(check, k)
@@ -118,7 +118,7 @@ func CheckOutboundType(data *string) (checkdone []byte) {
 	case "shadowtls":
 		{
 			for k := range check {
-				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "version" || k == "password" || k == "tls" {
 					return
 				} else {
 					delete(check, k)

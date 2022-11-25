@@ -15,7 +15,7 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 		db.Scan(&key, &value)
 		switch key {
 		case "instance":
-			statusInfo.Instancestatus = value
+			statusInfo.Instance_status = value
 		case "geodata_version":
 			statusInfo.Geodata_version = value
 		}
@@ -24,30 +24,30 @@ func StatusInfo() (statusInfo models.StatusInfo) {
 	return
 }
 
-func InboundsInfo() (inboundInfo models.InboundInfo) {
-	inboundInfo.Inbounds = make([]models.Inbounds, 1)
+func InboundsInfo() (inboundsInfo models.InboundsInfo) {
+	inboundsInfo.Inbounds = make([]models.Inbounds, 1)
 	db, _ := DB().Query("SELECT data FROM inbound")
 	for db.Next() {
 		var data string
 		db.Scan(&data)
-		json.Unmarshal([]byte(data), &inboundInfo.Inbounds[0])
+		json.Unmarshal([]byte(data), &inboundsInfo.Inbounds[0])
 	}
 	return
 }
 
-func OutboundsInfo() (outboundInfo models.OutboundInfo) {
+func OutboundsInfo() (outboundsInfo models.OutboundInfo) {
 	count_db, _ := DB().Query("SELECT * FROM outbound")
 	count := 0
 	for count_db.Next() {
 		count++
 	}
 
-	outboundInfo.Outbounds = make([]models.Outbounds, count)
+	outboundsInfo.Outbounds = make([]models.Outbounds, count)
 	db, _ := DB().Query("SELECT data FROM outbound")
 	for i := 0; db.Next(); i++ {
 		var data string
 		db.Scan(&data)
-		json.Unmarshal([]byte(data), &outboundInfo.Outbounds[i])
+		json.Unmarshal([]byte(data), &outboundsInfo.Outbounds[i])
 
 	}
 	return

@@ -1,19 +1,19 @@
 package models
 
 type StatusInfo struct {
-	Instancestatus    string `json:"instancestatus"`
+	Instancestatus    string `json:"instance_status"`
 	Geodata_version   string `json:"geodata_version"`
 }
 
-type InboundInfo struct {
+type InboundsInfo struct {
 	Inbounds []Inbound `json:"inbounds"`
 }
 
-type OutboundInfo struct {
+type OutboundsInfo struct {
 	Outbounds []Outbound `json:"outbounds"`
 }
 
-type RuleInfo struct {
+type RulesInfo struct {
 	Rules []Rule `json:"rules"`
 }
 

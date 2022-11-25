@@ -27,7 +27,7 @@ func Generator() (configFile models.ConfigFile) {
 	for count_db.Next() {
 		count++
 	}
-	configFile.Route.Rules = make([]models.ConfigRules, count)
+	configFile.Route.Rules = make([]models.ConfigRule, count)
 
 	db, _ = DB().Query("SELECT data FROM rules")
 	for i := 0; db.Next(); i++ {
@@ -36,7 +36,7 @@ func Generator() (configFile models.ConfigFile) {
 		json.Unmarshal([]byte(data), &configFile.Route.Rules[i])
 	}
 	/*****************  inbound  *****************/
-	configFile.Inbounds = make([]models.Inbounds, 1)
+	configFile.Inbounds = make([]models.ConfigInbound, 1)
 	db, _ = DB().Query("SELECT data FROM inbound")
 	for db.Next() {
 		var data string
@@ -50,39 +50,119 @@ func Generator() (configFile models.ConfigFile) {
 		count++
 	}
 
-	configFile.Outbounds = make([]models.ConfigOutbounds, count)
+	configFile.Outbounds = make([]models.ConfigOutbound, count)
 	db, _ = DB().Query("SELECT data FROM outbound")
 	for i := 0; db.Next(); i++ {
 		var data string
 		db.Scan(&data)
 
-		configFile.Outbounds[i] = CheckOutboundType(&data)
-		// json.Unmarshal([]byte(data), &configFile.Outbounds[i])
+		json.Unmarshal(CheckOutboundType(&data), &configFile.Outbounds[i])
 	}
 	db.Close()
 	return
 }
 
 func CheckOutboundType(data *string) (checkdone []byte) {
-	check := make(map(string[]string))
-	json.Unmarshal([]byte(data), &check)
-	outboundType, _ := check["type"]
+	check := make(map[string]string)
+	json.Unmarshal([]byte(*data), &check)
+	outboundType := check["type"]
 	switch outboundType {
-		case "shadowsocks":
-			{}
-		case "vmess":
-			{}
-		case "trojan":
-			{}
-		case "wireguard":
-			{}
-		case "hysteria":
-			{}
-		case "shadowsocksr":
-			{}
-		case "vless":
-			{}
-		case "shadowtls":
-			{}
+	case "shadowsocks":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
+	case "vmess":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
+	case "trojan":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
+	case "wireguard":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
+	case "hysteria":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
+	case "shadowsocksr":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
+	case "vless":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
+	case "shadowtls":
+		{
+			for k := range check {
+				if k == "type" || k == "tag" || k == "server" || k == "server_port" || k == "method" || k == "password" || k == "plugin" || k == "plugin_opts" || k == "network" || k == "udp_over_tcp" {
+					return
+				} else {
+					delete(check, k)
+				}
+			}
+			checkdone, _ = json.Marshal(check)
+			return checkdone
+		}
 	}
+	return checkdone
 }

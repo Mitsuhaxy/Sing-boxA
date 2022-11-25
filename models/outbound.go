@@ -32,6 +32,7 @@ type Outbound struct {
 	Method                string    `json:"method"`
 	Plugin                string    `json:"plugin"`
 	Plugin_opts           string    `json:"plugin_opts"`
+	Network               string    `json:"network"`
 	Obfs                  string    `json:"obfs"`
 	Obfs_param            string    `json:"obfs_param"`
 	Protocol              string    `json:"protocol"`

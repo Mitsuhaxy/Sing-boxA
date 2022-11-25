@@ -22,6 +22,7 @@ type ConfigOutbounds struct {
 	Type                  string    `json:"type"`
 	Server                string    `json:"server"`
 	Server_port           int       `json:"server_port"`
+	Version           	  int       `json:"version"`
 	Method                string    `json:"method"`
 	Plugin                string    `json:"plugin"`
 	Plugin_opts           string    `json:"plugin_opts"`

@@ -17,7 +17,7 @@ type ConfigLog struct {
 type ConfigRoute struct {
 	Geoip                 Geoip         `json:"geoip"`
 	Geosite               Geosite       `json:"geosite"`
-	Rules                 []ConfigRules `json:"rules"`
+	Rules                 []ConfigRule  `json:"rules"`
 	Final                 string        `json:"final"`
 	Auto_detect_interface bool          `json:"auto_detect_interface"`
 	Default_mark          int           `json:"default_mark"`
@@ -73,7 +73,7 @@ type ConfigOutbounds struct {
 	Disable_mtu_discovery bool      `json:"disable_mtu_discovery"`
 }
 
-type ConfigRules struct {
+type ConfigRule struct {
 	ID         string   `json:"-"`
 	Inbound    string   `json:"inbound"`
 	Ip_version int      `json:"ip_version"`

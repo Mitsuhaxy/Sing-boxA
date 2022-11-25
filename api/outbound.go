@@ -12,7 +12,6 @@ import (
 
 func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		isSuccess := false
 
 		addOutbound := models.Outbound{}
 		addOutbound.ID = uuid.New().String()
@@ -56,9 +55,7 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 		addOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 		addOutbound.Transport.Server_name = r.FormValue("transport_server_name")
 
-		isSuccess = db.Add_Outbound(addOutbound)
-
-		if isSuccess {
+		if db.Add_Outbound(addOutbound) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))
@@ -72,7 +69,6 @@ func api_outbound_add(w http.ResponseWriter, r *http.Request) {
 
 func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		isSuccess := false
 
 		modOutbound := models.Outbounds{}
 		modOutbound.ID = r.FormValue("id")
@@ -115,9 +111,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 		modOutbound.Transport.Early_data_header_name = r.FormValue("transport_early_data_header_name")
 		modOutbound.Transport.Server_name = r.FormValue("transport_server_name")
 
-		isSuccess = db.Mod_Outbound(modOutbound)
-
-		if isSuccess {
+		if db.Mod_Outbound(modOutbound) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
 			w.Write([]byte(`{"info": "success"}`))
@@ -131,6 +125,7 @@ func api_outbound_mod(w http.ResponseWriter, r *http.Request) {
 
 func api_outbound_del(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
+		
 		if db.Del_Outbound(r.FormValue("id")) {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusCreated)
